@@ -9,14 +9,19 @@ import { RoomComponent } from './room/room.component';
 import { CreateComponent } from './room/create/create.component';
 import { EditComponent } from './room/edit/edit.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './users/login/login.component';
+import { RegisterComponent } from './users/register/register.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import {FormsModule} from "@angular/forms";
 
 
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, FooterComponent, SearchComponent, RoomComponent, CreateComponent, EditComponent, NavbarComponent],
+  declarations: [HomeComponent, HeaderComponent, FooterComponent, SearchComponent, RoomComponent, CreateComponent, EditComponent, NavbarComponent, LoginComponent, RegisterComponent, UserEditComponent],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

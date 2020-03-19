@@ -9,6 +9,8 @@ import { RoomComponent } from './room/room.component';
 import { CreateComponent } from './room/create/create.component';
 import { EditComponent } from './room/edit/edit.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CKEditorModule } from 'ngx-ckeditor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +18,10 @@ import { NavbarComponent } from './navbar/navbar.component';
   declarations: [HomeComponent, HeaderComponent, FooterComponent, SearchComponent, RoomComponent, CreateComponent, EditComponent, NavbarComponent],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CKEditorModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

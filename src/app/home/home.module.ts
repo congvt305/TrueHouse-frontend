@@ -12,7 +12,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
-import {FormsModule} from "@angular/forms";
+import { CKEditorModule } from 'ngx-ckeditor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,9 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    CKEditorModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

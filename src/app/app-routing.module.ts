@@ -4,16 +4,17 @@ import {Routes, RouterModule} from '@angular/router';
 import {RoomComponent} from './home/room/room.component';
 import {CreateComponent} from './home/room/create/create.component';
 import {EditComponent} from './home/room/edit/edit.component';
-import {LoginComponent} from "./home/users/login/login.component";
-import {RegisterComponent} from "./home/users/register/register.component";
-import { UserEditComponent } from "./home/users/user-edit/user-edit.component";
+import {LoginComponent} from './home/users/login/login.component';
+import {RegisterComponent} from './home/users/register/register.component';
+import { UserEditComponent } from './home/users/user-edit/user-edit.component';
 
 function EditUserComponent() {
 
 }
 
 const routes: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: 'home', component: HomeComponent},
     {
         path: 'room',
         children: [

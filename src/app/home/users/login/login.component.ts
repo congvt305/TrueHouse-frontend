@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../../service/authentication.service";
-import {AlertService} from "../../../service/alert.service";
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
+import {UserService} from '../../../service/user.service';
+import {IUser} from '../../../interface/i-user';
+import {AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
 
 @Component({
     selector: 'app-login',
@@ -9,32 +11,46 @@ import {AlertService} from "../../../service/alert.service";
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    model: any = {};
-    loading = false;
-    returnUrl: string;
-
+    loginForm;
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService) {
+       private fb: FormBuilder,
+       private userService: UserService,
+       private router: Router,
+       private authService: AuthService
+    ) {}
+
+    ngOnInit(): void {
+       this.loginForm = this.fb.group({
+           email: [],
+           password: [],
+       });
+       this.authService.authState.subscribe((user) => {
+            this.userService.updateUser(user);
+            this.userService.updateLoggedIn(true);
+        });
     }
 
-    ngOnInit() {
-        this.authenticationService.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    signInWithGoogle(): void {
+        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+        this.router.navigate(['/home']);
+    }
+    signInWithFB(): void {
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+        this.router.navigate(['/home']);
+    }
+    login(data) {
+        const user = {
+            email: data.email,
+            password: data.password,
+        };
+        this.userService.login(user).subscribe(next => {
+            if (next.message === 'success') {
+                this.userService.updateUser(next);
+                this.router.navigate(['room']);
+            } else {
+                alert('Sai thông tin đăng nhập');
+            }
+        });
     }
 
-    login() {
-        this.loading = true;
-        this.authenticationService.login(this.model.email, this.model.password)
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
 }

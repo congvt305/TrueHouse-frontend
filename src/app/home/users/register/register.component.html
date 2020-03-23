@@ -3,33 +3,25 @@
      aria-hidden="true">
     <div class="modal-dialog form-dark" role="document">
         <!--Content-->
-        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+        <form [formGroup]="registerForm"  (ngSubmit)="register(registerForm.value)">
+            <div class="form-group" >
                 <label>Name</label>
-                <input type="text" class="form-control" name="name" [(ngModel)]="model.name"
-                       #name="ngModel" required/>
-                <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+                <input type="text" class="form-control" formControlName="name" required/>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <div class="form-group" >
                 <label >Email</label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel"
-                       required/>
-                <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                <input type="email" class="form-control" formControlName="email" required/>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+            <div class="form-group" >
                 <label>Phone</label>
-                <input type="number" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel"
-                       required/>
-                <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone is required</div>
+                <input type="number" class="form-control" formControlName="phone" required/>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <div class="form-group" >
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="model.password"
-                       #password="ngModel" required/>
-                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                <input type="password" class="form-control" formControlName="password" required/>
             </div>
             <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary">Register</button>
                 <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
             </div>
         </form>

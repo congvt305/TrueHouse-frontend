@@ -14,8 +14,24 @@ import { RegisterComponent } from './users/register/register.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { CKEditorModule } from 'ngx-ckeditor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 
+const config = new AuthServiceConfig([
+  // {
+  //   id: GoogleLoginProvider.PROVIDER_ID,
+  //   provider: new GoogleLoginProvider('Google-OAuth-Client-Id')
+  // },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('511993239711990')
+  }
+]);
 
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [HomeComponent, HeaderComponent, FooterComponent, SearchComponent, RoomComponent, CreateComponent, EditComponent, NavbarComponent, LoginComponent, RegisterComponent, UserEditComponent],
@@ -24,7 +40,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     CKEditorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ]
 })
 export class HomeModule { }

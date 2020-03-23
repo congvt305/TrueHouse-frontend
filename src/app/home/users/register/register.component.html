@@ -3,30 +3,39 @@
      aria-hidden="true">
     <div class="modal-dialog form-dark" role="document">
         <!--Content-->
-        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName"
-                       #firstName="ngModel" required/>
-                <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                </div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel"
-                       required/>
-                <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" formControlName="name" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
-                       required/>
-                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="number" formControlName="phone" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.phone.errors.required">Phone is required</div>
+                </div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="model.password"
-                       #password="ngModel" required/>
-                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="password" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
             </div>
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Register</button>

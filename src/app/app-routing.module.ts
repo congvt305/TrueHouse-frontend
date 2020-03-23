@@ -13,12 +13,13 @@ function EditUserComponent() {
 }
 
 const routes: Routes = [
+
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {
         path: 'room',
         children: [
-            {path: '', component: RoomComponent},
+            { path: ':id/post', component: RoomComponent },
             {path: 'edit/:id', component: EditComponent},
             {path: 'create', component: CreateComponent},
         ]

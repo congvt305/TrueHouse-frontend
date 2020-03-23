@@ -1,10 +1,15 @@
 export interface IRoom {
-    name: string;
-    type_house: string;
-    type_room: string;
+    id: number,
+    name_house: string;
+    house_type: string;
+    room_type: string;
     address: string;
-    num_bed: number;
-    num_bath: number;
+    bed_room_num: number;
+    bath_room_num: number;
     description: string;
     price: number;
+    user_id: number;
+    status: boolean;
+    updated_at: string;
+
 }

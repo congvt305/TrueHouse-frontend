@@ -5,40 +5,129 @@
   <h1>Đăng nhà</h1>
   <form (ngSubmit)="onSubmit(formCreateRoom.value)" [formGroup]="formCreateRoom">
     <div class="form-group">
-      <label>Tên của căn nhà</label>
-      <input type="text" class="form-control" formControlName="name"/>
+      <label>Tên bài viết</label>
+      <input type="text" class="form-control" formControlName="name_house"/>
     </div>
-    <div class="form-group">
-      <label>Loại nhà</label>
-      <input type="text" class="form-control" formControlName="type_house"/>
-    </div>
-    <div class="form-group">
-      <label>Loại phòng</label>
-      <input type="text" class="form-control" formControlName="type_room"/>
+    <div *ngFor="let errors of ERROR_MESSAGE.name_house" class="text-danger mt-2">
+      <ng-container
+        *ngIf="(formCreateRoom.get('name_house').hasError(errors.type)) &&(formCreateRoom.get('name_house').touched) ">
+        {{errors.message}}
+      </ng-container>
     </div>
     <div class="form-group">
       <label>Địa chỉ</label>
       <input type="text" class="form-control" formControlName="address"/>
     </div>
-    <div class="form-group">
+    <div *ngFor="let errors of ERROR_MESSAGE.address" class="text-danger mt-2">
+      <ng-container
+        *ngIf="(formCreateRoom.get('address').hasError(errors.type)) &&(formCreateRoom.get('address').touched) ">
+        {{errors.message}}
+      </ng-container>
+    </div>
+    <div class="form-row">
+    <div class="form-group col">
+      <label>Loại nhà</label>
+      <input type="text" class="form-control" formControlName="house_type"/>
+      <div *ngFor="let errors of ERROR_MESSAGE.house_type" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('house_type').hasError(errors.type)) &&(formCreateRoom.get('house_type').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label>Loại phòng</label>
+      <input type="text" class="form-control" formControlName="room_type"/>
+      <div *ngFor="let errors of ERROR_MESSAGE.room_type" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('room_type').hasError(errors.type)) &&(formCreateRoom.get('room_type').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+    <div class="form-row">
+    <div class="form-group col">
       <label>Số lượng phòng ngủ</label>
-      <input type="number" class="form-control" formControlName="num_bed"/>
+      <input type="number" class="form-control" formControlName="bed_room_num"/>
+      <div *ngFor="let errors of ERROR_MESSAGE.bed_room_num" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('bed_room_num').hasError(errors.type)) &&(formCreateRoom.get('bed_room_num').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
     </div>
-    <div class="form-group">
+    <div class="form-group col">
       <label>Số lượng phòng tắm</label>
-      <input type="number" class="form-control" formControlName="num_bath"/>
+      <input type="number" class="form-control" formControlName="bath_room_num"/>
+      <div *ngFor="let errors of ERROR_MESSAGE.bath_room_num" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('bath_room_num').hasError(errors.type)) &&(formCreateRoom.get('bath_room_num').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
     </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Giá tiền theo đêm</label>
+      <input type="number" class="form-control" formControlName="price" />
+      <div *ngFor="let errors of ERROR_MESSAGE.price" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('price').hasError(errors.type)) &&(formCreateRoom.get('price').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label>Status</label>
+      <select formControlName="status" class="form-control">
+        <option value="1" selected>Abc</option>
+        <option value="2">Xyz</option>
+      </select>
+      <div *ngFor="let errors of ERROR_MESSAGE.status" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('status').hasError(errors.type)) &&(formCreateRoom.get('status').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <label>User ID</label>
+    <input type="number" class="form-control" formControlName="user_id" />
+  </div>
     <div class="form-group">
       <label>Mô tả chung</label>
       <ck-editor formControlName="description" [(ngModel)]="description" skin="moono-lisa" language="en"></ck-editor>
+      <div *ngFor="let errors of ERROR_MESSAGE.description" class="text-danger mt-2">
+        <ng-container
+          *ngIf="(formCreateRoom.get('description').hasError(errors.type)) &&(formCreateRoom.get('description').touched) ">
+          {{errors.message}}
+        </ng-container>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Giá tiền theo đêm</label>
-      <input type="number" class="form-control" formControlName="price" />
-    </div>
+      <br>
+      <input formControlName="document" class="form-control-file" type="file" ng2FileSelect accept=".png, .jpg" [uploader]="uploader" multiple/><br/>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of uploader.queue; let i = index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ item.file.name }}</td>
+            <td><div class="btn btn-danger" (click)="item.remove()">delete</div></td>
+          </tr>
+        </tbody>
+      </table>
+
     <button type="submit" class="btn btn-primary mb-5">Submit</button>
   </form>
-
 </div>
-
 <app-footer></app-footer>

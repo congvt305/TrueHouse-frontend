@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {UserService} from "../../../service/user.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from "../../../service/authentication.service";
+import {AlertService} from "../../../service/alert.service";
+import {first} from "rxjs/operators";
 
 @Component({
     selector: 'app-login',
@@ -10,41 +12,57 @@ import {UserService} from "../../../service/user.service";
 })
 export class LoginComponent implements OnInit {
     formLogin;
-    ERROR_MESSAGE = {
-        email: [
-            {type: 'email', message: 'Email invalid.'},
-            {type: 'minlength', message: 'Username has min length : 6'}
-        ],
-        password: [
-            {type: 'required', message: 'Password is required.'},
-            {type: 'minlength', message: 'Password has min length: 4'}
-        ]
-    };
-
     user: any;
+    submitted = false;
+    loginForm: FormGroup;
+    loading = false;
+    returnUrl: string;
 
 
     constructor(
-        private fb: FormBuilder,
-        private userService: UserService,
-        private router: Router
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        private alertService: AlertService
     ) {
+        if (this.authenticationService.CurrentUserValue) {
+            this.router.navigate(['/']);
+        }
+
     }
 
-    ngOnInit(): void {
-        this.formLogin = this.fb.group({
-            email: ['', [Validators.email, Validators.minLength(6)]],
-            password: ['', [Validators.required, Validators.minLength(4)]],
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required]
         });
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    onSubmit(data) {
-        const user = {
-            email: data.email,
-            password: data.password
-        };
-        this.userService.log_in(user).subscribe(result => {
-            this.router.navigate(['']);
-        });
+    get f() {
+        return this.loginForm.controls;
     }
+
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.log_in(this.f.email.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });
+    }
+    
 }

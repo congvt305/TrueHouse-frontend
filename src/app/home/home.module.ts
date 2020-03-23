@@ -12,16 +12,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
 @NgModule({
   declarations: [HomeComponent, HeaderComponent, FooterComponent, SearchComponent, RoomComponent, CreateComponent, EditComponent, NavbarComponent, LoginComponent, RegisterComponent, UserEditComponent],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
+    ]
 })
 export class HomeModule { }

@@ -1,37 +1,73 @@
-<button class="login_btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Login</button>
+<form action="" [formGroup]="formLogin" (ngSubmit)="onSubmit(formLogin.value)">
+    <!-- Modal -->
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content form-elegant">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Sign in</strong>
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body mx-4">
+                    <!--Body-->
+                    <div class="md-form mb-5">
+                        <input type="email" id="Form-email1" class="form-control validate" formControlName="email">
+                        <label data-error="wrong" data-success="right" for="Form-email1">Your email</label>
+                        <small *ngFor="let errors of ERROR_MESSAGE.email" class="text-danger">
+                            <ng-container
+                                    *ngIf="(formLogin.get('email').hasError(errors.type)) &&(formLogin.get('email').touched) ">
+                                {{errors.message}}
+                            </ng-container>
+                        </small>
+                    </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="form">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Login to your account</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <div class="md-form pb-3">
+                        <input type="password" id="Form-pass1" class="form-control validate" formControlName="password">
+                        <label data-error="wrong" data-success="right" for="Form-pass1">Your password</label>
+                        <small *ngFor="let errors of ERROR_MESSAGE.password" class="text-danger">
+                            <ng-container
+                                    *ngIf="(formLogin.get('password').hasError(errors.type)) &&(formLogin.get('password').touched) ">
+                                {{errors.message}}
+                            </ng-container>
+                        </small>
+                        <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#" class="blue-text ml-1">
+                            Password?</a></p>
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a"
+                                [disabled]="formLogin.invalid">Sign in
+                        </button>
+                    </div>
+                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+                        with:</p>
+
+                    <div class="row my-3 d-flex justify-content-center">
+                        <!--Facebook-->
+                        <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i
+                                class="fab fa-facebook-f text-center"></i></button>
+                        <!--Twitter-->
+                        <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-twitter"></i>
+                        </button>
+                        <!--Google +-->
+                        <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fab fa-google-plus-g"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer mx-5 pt-3 mb-1">
+                    <p class="font-small grey-text d-flex justify-content-end">Not a member? <a href="#" class="blue-text ml-1">
+                        Sign Up</a></p>
+                </div>
             </div>
-            <div class="modal-body">
-                <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                        <label>Username</label>
-                        <input type="text" class="form-control" name="username" [(ngModel)]="model.username"
-                               #username="ngModel" required/>
-                        <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-                    </div>
-                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" [(ngModel)]="model.password"
-                               #password="ngModel" required/>
-                        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-                    </div>
-                    <div class="form-group">
-                        <button [disabled]="loading" class="btn btn-primary float-right">Login</button>
-                    </div>
-                </form>
-                <app-register></app-register>
-
-            </div>
-
+            <!--/.Content-->
         </div>
     </div>
-</div>
+    <!-- Modal -->
+</form>

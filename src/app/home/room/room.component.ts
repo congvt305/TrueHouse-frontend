@@ -10,15 +10,18 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class RoomComponent implements OnInit {
   room: IRoom;
+  user;
 
   constructor(
     private roomService: RoomService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get("id");
     this.getRoomId(id);
+    this.user = this.userService.user;
   }
 
   getRoomId(id) {    

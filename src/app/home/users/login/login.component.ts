@@ -12,19 +12,22 @@ import {AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser} fro
 })
 export class LoginComponent implements OnInit {
     loginForm;
+
     constructor(
-       private fb: FormBuilder,
-       private userService: UserService,
-       private router: Router,
-       private authService: AuthService
-    ) {}
+        private fb: FormBuilder,
+        private userService: UserService,
+        private router: Router,
+        private authService: AuthService
+    ) {
+    }
 
     ngOnInit(): void {
-       this.loginForm = this.fb.group({
-           email: [],
-           password: [],
-       });
-       this.authService.authState.subscribe((user) => {
+        this.loginForm = this.fb.group({
+            email: [],
+            password: [],
+        });
+        this.authService.authState.subscribe((user) => {
+            console.log(user);
             this.userService.updateUser(user);
             this.userService.updateLoggedIn(true);
         });
@@ -32,12 +35,14 @@ export class LoginComponent implements OnInit {
 
     signInWithGoogle(): void {
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/room']);
     }
+
     signInWithFB(): void {
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
         this.router.navigate(['/home']);
     }
+
     login(data) {
         const user = {
             email: data.email,

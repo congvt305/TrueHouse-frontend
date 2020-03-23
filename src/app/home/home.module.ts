@@ -19,10 +19,10 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 
 const config = new AuthServiceConfig([
-  // {
-  //   id: GoogleLoginProvider.PROVIDER_ID,
-  //   provider: new GoogleLoginProvider('Google-OAuth-Client-Id')
-  // },
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('869356032587-g8rjgkmorue87kilsucqit1k1csm3mbm.apps.googleusercontent.com')
+  },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider('511993239711990')

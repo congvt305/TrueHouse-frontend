@@ -21,6 +21,7 @@ export class UserService {
 
   updateUser(user) {
     this.userData.next(user);
+    console.log(this.user);
   }
   updateLoggedIn(loggedIn: boolean) {
     this.loggedInData.next(loggedIn);

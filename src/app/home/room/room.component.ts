@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-room',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-
-  constructor() { }
+  user;
+  constructor(
+      private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.user = this.userService.user;
   }
 
 }

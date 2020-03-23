@@ -1,24 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map'
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {IUser} from "../interface/i-user";
 
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+    private currentUserSubject: BehaviorSubject<IUser>;
+    public currentUser: Observable<IUser>;
 
-  login(email: string, password: string) {
-    return this.http.post<any>('/api/authenticate', { email: email, password: password })
-        .map(user => {
-          if (user && user.token) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-          }
-          return user;
-        });
-  }
+    constructor(private http: HttpClient) {
+        this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
 
-  logout() {
-    localStorage.removeItem('currentUser');
-  }
+    public get currentUserValue(): IUser {
+        return this.currentUserSubject.value;
+    }
+
+    login(username: string, password: string) {
+        return this.http.post<any>(`/users/authenticate`, { email, password })
+            .pipe(map(user => {
+                if (user && user.token) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            }));
+    }
+
+    logout() {
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+    }
 }

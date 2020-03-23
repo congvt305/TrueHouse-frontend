@@ -1,120 +1,220 @@
 <app-header></app-header>
 <app-search></app-search>
 <section class="listings">
-	<div class="wrapper">
-		<ul class="properties_list">
-			<li>
-				<a href="#">
-					<img src="assets/img/property_1.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$2500</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_2.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$1000</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_3.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$500</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_1.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$2500</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_2.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$1000</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_3.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$500</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_1.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$2500</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_2.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$1000</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="assets/img/property_3.jpg" alt="" title="" class="property_img"/>
-				</a>
-				<span class="price">$500</span>
-				<div class="property_details">
-					<h1>
-						<a href="#">Fuisque dictum tortor at purus libero</a>
-					</h1>
-					<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
-				</div>
-			</li>
-		</ul>
-		<div class="more_listing">
-			<a href="#" class="more_listing_btn">View More Listings</a>
-		</div>
-	</div>
+  <div class="wrapper">
+    <ul class="properties_list">
+      <li *ngFor="let item of rooms">
+        <a [routerLink]="['/room/', item.id, 'post']">
+          <img
+            src="https://diaocvanphu.vn/wp-content/uploads/2018/11/mau-thiet-ke-noi-that-can-ho-dep.jpg"
+            alt=""
+            title=""
+            class="property_img"
+          />
+        </a>
+        <span class="price">
+          <svg
+            class="bi bi-geo-alt"
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          {{ item.address }}
+        </span>
+        <div class="property_details">
+          <h1>{{ item.price }} đ/đêm</h1>
+          <p>
+            <svg
+              version="1.1"
+              id="IconsRepoEditor"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 512 512"
+              style="enable-background:new 0 0 512 512;"
+              xml:space="preserve"
+              width="16px"
+              height="16px"
+              fill="#000000"
+              stroke="#000000"
+              stroke-width="0"
+            >
+              <g id="IconsRepo_bgCarrier"></g>
+              <path
+                d="M473.148,35.029C470.289,33.604,401.314,0,247.467,0C99.226,0,44.51,31.445,38.443,35.243 C14.362,47.411,0,66.108,0,85.333V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533V85.333 c0-14.984,15.198-27.921,29.414-35.029c0.29-0.154,0.614-0.341,0.879-0.512c0.503-0.324,52.002-32.725,200.107-32.725 c149.222,0,217.395,32.905,218.052,33.237c14.217,7.108,29.414,20.045,29.414,35.029V281.6c0,4.71,3.823,8.533,8.533,8.533 S512,286.31,512,281.6V85.333C512,65.997,497.476,47.198,473.148,35.029z"
+              ></path>
+              <path
+                d="M51.2,264.533V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533v-17.067c0-14.114,11.486-25.6,25.6-25.6 h102.4c14.114,0,25.6,11.486,25.6,25.6V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533v-17.067 c0-23.526-19.14-42.667-42.667-42.667h-102.4C70.34,221.867,51.2,241.007,51.2,264.533z"
+              ></path>
+              <path
+                d="M162.133,119.467c0-4.71-3.814-8.533-8.533-8.533c-4.719,0-8.533,3.823-8.533,8.533S148.881,128,153.6,128 C158.319,128,162.133,124.177,162.133,119.467z"
+              ></path>
+              <path
+                d="M452.267,494.933h-51.2c-4.71,0-8.533,3.823-8.533,8.533s3.823,8.533,8.533,8.533h51.2c4.71,0,8.533-3.823,8.533-8.533 S456.977,494.933,452.267,494.933z"
+              ></path>
+              <path
+                d="M110.933,494.933h-51.2c-4.71,0-8.533,3.823-8.533,8.533S55.023,512,59.733,512h51.2c4.71,0,8.533-3.823,8.533-8.533 S115.644,494.933,110.933,494.933z"
+              ></path>
+              <path
+                d="M204.8,179.2c4.719,0,8.533-3.823,8.533-8.533s-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533 S200.081,179.2,204.8,179.2z"
+              ></path>
+              <path
+                d="M503.467,307.2H8.533c-4.71,0-8.533,3.823-8.533,8.533v51.2c0,4.71,3.823,8.533,8.533,8.533h460.8 c4.71,0,8.533-3.823,8.533-8.533s-3.823-8.533-8.533-8.533H17.067v-34.133h477.867V435.2c0,14.114-11.486,25.6-25.6,25.6H42.667 c-14.114,0-25.6-11.486-25.6-25.6v-34.133c0-4.71-3.823-8.533-8.533-8.533S0,396.356,0,401.067V435.2 c0,23.526,19.14,42.667,42.667,42.667h426.667c23.526,0,42.667-19.14,42.667-42.667V315.733 C512,311.023,508.177,307.2,503.467,307.2z"
+              ></path>
+              <path
+                d="M110.933,170.667c0-4.71-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533s3.814,8.533,8.533,8.533 S110.933,175.377,110.933,170.667z"
+              ></path>
+              <path
+                d="M366.933,119.467c0-4.71-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533S353.681,128,358.4,128 S366.933,124.177,366.933,119.467z"
+              ></path>
+              <path
+                d="M273.067,264.533V281.6c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533v-17.067c0-14.114,11.486-25.6,25.6-25.6 h102.4c14.114,0,25.6,11.486,25.6,25.6V281.6c0,4.71,3.823,8.533,8.533,8.533c4.71,0,8.533-3.823,8.533-8.533v-17.067 c0-23.526-19.14-42.667-42.667-42.667h-102.4C292.207,221.867,273.067,241.007,273.067,264.533z"
+              ></path>
+              <path
+                d="M418.133,170.667c0-4.71-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533s3.814,8.533,8.533,8.533 S418.133,175.377,418.133,170.667z"
+              ></path>
+              <path
+                d="M204.8,76.8c4.719,0,8.533-3.823,8.533-8.533s-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533 S200.081,76.8,204.8,76.8z"
+              ></path>
+              <path
+                d="M307.2,76.8c4.719,0,8.533-3.823,8.533-8.533s-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533 S302.481,76.8,307.2,76.8z"
+              ></path>
+              <path
+                d="M264.533,119.467c0-4.71-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533S251.281,128,256,128 S264.533,124.177,264.533,119.467z"
+              ></path>
+              <path
+                d="M307.2,179.2c4.719,0,8.533-3.823,8.533-8.533s-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533 S302.481,179.2,307.2,179.2z"
+              ></path>
+            </svg>
+            {{ item.bed_room_num }} |
+            <svg
+              version="1.1"
+              id="IconsRepoEditor"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 489.994 489.994"
+              style="enable-background:new 0 0 489.994 489.994;"
+              xml:space="preserve"
+              width="16px"
+              height="16px"
+              fill="#000000"
+              stroke="#000000"
+              stroke-width="0"
+            >
+              <g id="IconsRepo_bgCarrier"></g>
+              <g id="IconsRepoEditor">
+                <path
+                  d="M489.993,260.362h-7.656H15.312H0v15.313h15.312v20.386c0,75.578,56.928,138.102,130.154,146.964v24.053h15.313v-23.001 c0.86,0.015,1.719,0.033,2.583,0.033h165.853v22.969h15.312v-23.33c76.876-5.277,137.811-69.496,137.811-147.689v-20.386h7.656 L489.993,260.362L489.993,260.362z M334.288,428.797H163.361c-73.191,0-132.737-59.545-132.737-132.736v-20.386h436.4v20.386 h0.001C467.025,369.252,407.48,428.797,334.288,428.797z"
+                ></path>
+                <rect
+                  x="68.905"
+                  y="290.987"
+                  width="359.839"
+                  height="15.313"
+                ></rect>
+                <path
+                  d="M107.077,71.896v12.936c-21.703,3.703-38.28,22.635-38.28,45.378v7.765h92.09v-7.765 c0-22.744-16.577-41.676-38.281-45.379V71.896c0-27.009-21.973-48.981-48.981-48.981H0v15.529h73.625 C92.07,38.444,107.077,53.451,107.077,71.896z M114.842,99.692c14.144,0,26.072,9.674,29.515,22.752h-59.03 C88.77,109.365,100.698,99.692,114.842,99.692z"
+                ></path>
+                <path
+                  d="M237.233,176.253H436.51V69.068h15.204V53.539h-0.002H433.59c-4.544-9.069-13.924-15.313-24.739-15.313H264.89 c-10.816,0-20.195,6.244-24.739,15.313h-18.122v15.529h15.204V176.253z M252.761,65.883c0-6.688,5.441-12.128,12.129-12.128 h143.961c6.688,0,12.128,5.44,12.128,12.128v94.841H252.761V65.883z"
+                ></path>
+                <rect
+                  x="237.232"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="267.857"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="298.481"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="329.106"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="359.73"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="390.355"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="420.98"
+                  y="183.802"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+                <rect
+                  x="267.965"
+                  y="130.099"
+                  width="137.811"
+                  height="15.529"
+                ></rect>
+                <rect
+                  x="76.453"
+                  y="153.177"
+                  width="15.529"
+                  height="38.281"
+                ></rect>
+                <rect
+                  x="107.077"
+                  y="153.177"
+                  width="15.529"
+                  height="61.249"
+                ></rect>
+                <rect
+                  x="137.702"
+                  y="153.177"
+                  width="15.529"
+                  height="22.969"
+                ></rect>
+              </g>
+            </svg>
+			{{ item.bath_room_num }}
+			
+			<i style="clear: both; float: right;">{{ item.updated_at | date:'yyyy-MM-dd' }}</i>
+          </p>
+          <hr />
+          <div
+            [routerLink]="['/room/', item.id, 'post']"
+            style="text-transform: uppercase;"
+          >
+            {{ item.name_house }}
+          </div>
+          <!-- <p ng-bind-html="">{{ item.description }}</p> -->
+        </div>
+      </li>
+    </ul>
+    <div class="more_listing">
+      <a href="#" class="more_listing_btn">View More Listings</a>
+    </div>
+  </div>
 </section>
 <app-footer></app-footer>

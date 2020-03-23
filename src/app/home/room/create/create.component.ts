@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { IRoom } from "../../../interface/i-room";
-import { RoomService } from "src/app/service/room.service";
+import { RoomService } from '../../../service/room.service';
 
 @Component({
   selector: "app-create",
@@ -16,28 +16,32 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private roomService: RoomService
   ) {}
 
   ngOnInit(): void {
     this.formCreateRoom = this.formBuilder.group({
-      name: ["", [Validators.required, Validators.minLength(6)]],
-      type_house: ["", [Validators.required]],
-      type_room: ["", [Validators.required]],
+      name_house: ["", [Validators.required, Validators.minLength(6)]],
+      house_type: ["", [Validators.required]],
+      room_type: ["", [Validators.required]],
       address: ["", [Validators.required]],
-      num_bed: ["", [Validators.required]],
-      num_bath: ["", [Validators.required]],
+      bed_room_num: ["", [Validators.required]],
+      bath_room_num: ["", [Validators.required]],
       description: ["", [Validators.required]],
-      price: ["", [Validators.required]]
+      price: ["", [Validators.required]],
+      user_id: [""],
+      status: [""]
     });
   }
 
   onSubmit(data) {
     this.model = data;
-    // this.roomService.create(this.model).subscribe(
-    //   (result: any) => {
-
-    //   });
     console.log(this.model);
+    
+    this.roomService.create(this.model).subscribe(
+      (result: any) => {
+        console.log(result);
+      });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RoomService } from "src/app/service/room.service";
 import { IRoom } from '../../interface/i-room';
 import { ActivatedRoute } from "@angular/router";
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: "app-room",

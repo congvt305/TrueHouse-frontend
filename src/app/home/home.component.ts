@@ -21,9 +21,7 @@ export class HomeComponent implements OnInit {
   getAll() {
     this.roomService.getAll().subscribe(data => {      
       for (const room of data['data']) {
-          this.rooms.push(room);
-          console.log(room);
-          
+          this.rooms.push(room);          
       }
     });
   }

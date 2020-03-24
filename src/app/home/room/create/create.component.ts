@@ -70,7 +70,7 @@ export class CreateComponent implements OnInit {
       bath_room_num: ["", [Validators.required]],
       description: ["", [Validators.required]],
       price: ["", [Validators.required]],
-      user_id: [""],
+      user_id: [sessionStorage.getItem("token")],
       status: ["",[Validators.required]],
       document: [null, null],
       type: [null, Validators.compose([Validators.required])]
@@ -102,6 +102,8 @@ export class CreateComponent implements OnInit {
         });
       }
       this.uploader.clearQueue();
+      alert("Thanh cong");
+      this.router.navigate(['home']);
     });
   }
 

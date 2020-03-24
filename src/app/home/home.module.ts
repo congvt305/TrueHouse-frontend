@@ -25,10 +25,10 @@ const config = new AuthServiceConfig([
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider('869356032587-g8rjgkmorue87kilsucqit1k1csm3mbm.apps.googleusercontent.com')
   },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('511993239711990')
-  }
+  // {
+  //   id: FacebookLoginProvider.PROVIDER_ID,
+  //   provider: new FacebookLoginProvider('511993239711990')
+  // }
 ]);
 
 export function provideConfig() {
@@ -36,7 +36,18 @@ export function provideConfig() {
 }
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, FooterComponent, SearchComponent, RoomComponent, CreateComponent, EditComponent, NavbarComponent, LoginComponent, RegisterComponent, UserEditComponent],
+  declarations: [
+    HomeComponent, 
+    HeaderComponent, 
+    FooterComponent, 
+    SearchComponent, 
+    RoomComponent, 
+    CreateComponent, 
+    EditComponent, 
+    NavbarComponent, 
+    LoginComponent, 
+    RegisterComponent, 
+    UserEditComponent],
   imports: [
     FileUploadModule,
     CommonModule,

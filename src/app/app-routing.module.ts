@@ -7,13 +7,14 @@ import {EditComponent} from './home/room/edit/edit.component';
 import {LoginComponent} from "./home/users/login/login.component";
 import {RegisterComponent} from "./home/users/register/register.component";
 import { UserEditComponent } from "./home/users/user-edit/user-edit.component";
+import {AuthGuard} from "./auth.guard";
 
 function EditUserComponent() {
 
 }
 
 const routes: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: HomeComponent, canActivate: [AuthGuard]},
     {
         path: 'room',
         children: [

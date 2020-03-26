@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
+import {ChangePasswordComponent} from './change-password/change-password.component';
+
 
 const config = new AuthServiceConfig([
   {
@@ -37,8 +39,8 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    HomeComponent, 
-    HeaderComponent, 
+    HomeComponent,
+    HeaderComponent,
     FooterComponent, 
     SearchComponent, 
     RoomComponent, 
@@ -47,7 +49,8 @@ export function provideConfig() {
     NavbarComponent, 
     LoginComponent, 
     RegisterComponent, 
-    UserEditComponent],
+    UserEditComponent,
+    ChangePasswordComponent],
   imports: [
     FileUploadModule,
     CommonModule,

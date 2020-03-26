@@ -7,6 +7,7 @@ import {EditComponent} from './home/room/edit/edit.component';
 import {LoginComponent} from './home/users/login/login.component';
 import {RegisterComponent} from './home/users/register/register.component';
 import { UserEditComponent } from './home/users/user-edit/user-edit.component';
+import {ChangePasswordComponent} from './home/change-password/change-password.component';
 
 function EditUserComponent() {
 
@@ -15,7 +16,11 @@ function EditUserComponent() {
 const routes: Routes = [
 
     {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: 'home', component: HomeComponent},
+    {path: 'home', children: [
+            {path: '', component: HomeComponent},
+            {path: 'edit/{IdLogin}', component: ChangePasswordComponent}
+        ]
+        },
     {
         path: 'room',
         children: [
@@ -28,7 +33,7 @@ const routes: Routes = [
         path: 'user',
         children: [
             {path: 'register', component: RegisterComponent},
-            {path: 'edit/:id', component: UserEditComponent},
+            {path: 'edit/:', component: UserEditComponent},
             {path: 'login', component: LoginComponent}
         ]
     }

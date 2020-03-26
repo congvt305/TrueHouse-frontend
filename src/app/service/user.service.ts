@@ -22,8 +22,10 @@ export class UserService {
   updateUser(user) {
     this.userData.next(user);
   }
-  putPassword(user) {
-    this.http.put<IUser>(this.url, user);
+
+  changePassword(user, id): Observable<IUser>  {
+   return  this.http.patch<IUser>(this.url + 'users/' + id, user);
+
   }
   updateLoggedIn(loggedIn: boolean) {
     this.loggedInData.next(loggedIn);
@@ -43,7 +45,7 @@ export class UserService {
   }
 
   findById(id): Observable<IUser> {
-    return this.http.get<IUser>(this.url + id);
+    return this.http.get<IUser>(this.url + 'users/' + id);
   }
 
   logout() {

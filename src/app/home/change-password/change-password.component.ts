@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../../service/user.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from 'angularx-social-login';
 
 @Component({
@@ -11,17 +11,25 @@ import {AuthService} from 'angularx-social-login';
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm;
-  IdLogin = sessionStorage.getItem('token');
-
+  IdLogin;
+  data;
   constructor(
       private fb: FormBuilder,
       private userService: UserService,
       private router: Router,
-      private authService: AuthService
+      private authService: AuthService,
+      private route: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    this.IdLogin = this.route.snapshot.paramMap.get('id');
+    console.log(this.IdLogin);
+    this.userService.findById(this.IdLogin).subscribe(next => {
+       this.data = next.data;
+       console.log(next.data);
+     });
+
     this.changePasswordForm = this.fb.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -30,18 +38,15 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword(data) {
-    const user = this.userService.findById(this.IdLogin);
-    // @ts-ignore
-    if (user.password === data.currentPassword) {
-      // @ts-ignore
-      user.password = data.password;
-      if (data.password !== data.confirmPassword) {
+    const user = this.data;
+    console.log(data.password);
+    user.password = data.password;
+    if (data.password !== data.confirmPassword) {
         alert('Mat khau khong trungnhau');
       } else {
-        this.userService.putPassword(user);
+        this.userService.changePassword(user, this.IdLogin).subscribe();
       }
-      alert('Thay doi mat khau thanh cong');
-      this.router.navigate(['']);
-    } else { (alert('Ban nhap sai mat khau cu. Hay thu lai')); }
+    alert('Thay doi mat khau thanh cong');
+    this.router.navigate(['']);
   }
 }

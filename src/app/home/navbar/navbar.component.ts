@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  id = sessionStorage.getItem('token');
 
-  constructor() { }
+  constructor(
+      private userService: UserService,
+  ) { }
 
   ngOnInit(): void {
   }
-
 }

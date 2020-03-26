@@ -18,7 +18,7 @@ const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', children: [
             {path: '', component: HomeComponent},
-            {path: 'edit/{IdLogin}', component: ChangePasswordComponent}
+            {path: 'changePassword/:id', component: ChangePasswordComponent}
         ]
         },
     {

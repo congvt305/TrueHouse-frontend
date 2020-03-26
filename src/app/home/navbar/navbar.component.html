@@ -9,7 +9,7 @@
                 <li><a href="#">Sell</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a routerLink="edit/:id" >ChangePassword</a></li>
+                <li><a [routerLink]="['changePassword/' + id]" >ChangePassword</a></li>
             </ul>
             <app-login></app-login>
             <app-register></app-register>

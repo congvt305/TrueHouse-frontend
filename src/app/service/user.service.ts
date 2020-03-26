@@ -48,6 +48,6 @@ export class UserService {
 
   logout() {
     sessionStorage.removeItem("token");
-    this.router.navigate(["/"]);
+    this.router.navigate(["home"]);
   }
 }

@@ -59,9 +59,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['home']);
+  onLogout() {
+    if (confirm('Are you sure you want to log out ?')) {
+      this.userService.logout();
+    }
   }
 
   login(data) {

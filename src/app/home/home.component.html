@@ -3,10 +3,10 @@
 <section class="listings">
   <div class="wrapper">
     <ul class="properties_list">
-      <li *ngFor="let item of rooms">
+      <li *ngFor="let item of rooms; let i = index">
         <a [routerLink]="['/room/', item.id, 'post']">
           <img
-            src="https://diaocvanphu.vn/wp-content/uploads/2018/11/mau-thiet-ke-noi-that-can-ho-dep.jpg"
+            src="http://localhost:8000/storage/images/{{ images[i]['data'][0].url }}"
             alt=""
             title=""
             class="property_img"
@@ -34,7 +34,7 @@
             <svg version="1.1" viewBox="0 0 20 20" class="is-instant-book mr--6 svg-icon svg-fill" style="width: 15px; height: 15px;"><defs><linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="svgicon_instant_book_a"><stop stop-color="#F68A39" offset="0%"></stop><stop stop-color="#F65E39" offset="100%"></stop></linearGradient></defs><g fill="none" fill-rule="evenodd"><circle pid="0" fill="url(#svgicon_instant_book_a)" cx="10" cy="10" r="10"></circle><path pid="1" d="M10.42 15.158l3.037-6.073A.75.75 0 0 0 12.787 8H10V5.177a.75.75 0 0 0-1.42-.335l-3.037 6.073A.75.75 0 0 0 6.213 12H9v2.823a.75.75 0 0 0 1.42.335z" fill="#FFF"></path></g></svg>
             {{ item.name_house }}
           </p>
-          <p style="padding-bottom: 10px; padding-top: 15px;">
+          <p>
             <span class="price1">{{ item.price | currency:'VND':'symbol' }} đ/đêm</span
             ><i style="clear: both; float: right;">{{
               item.updated_at | date: "yyyy-MM-dd"

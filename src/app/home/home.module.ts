@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import {ChangePasswordComponent} from './change-password/change-password.component';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 const config = new AuthServiceConfig([
   {
@@ -60,7 +60,8 @@ export function provideConfig() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     {

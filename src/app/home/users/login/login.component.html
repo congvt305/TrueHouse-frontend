@@ -1,5 +1,5 @@
     <button *ngIf="!IdLogin" class="login_btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Login</button>
-    <button  *ngIf="IdLogin" class="login_btn" (click)="logout()">Logout</button>
+    <button  *ngIf="IdLogin" class="login_btn" (click)="onLogout()">Logout</button>
     <button  *ngIf="IdLogin" class="login_btn" [routerLink]="['/room/create']">Create House</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">

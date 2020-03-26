@@ -3,10 +3,10 @@
 <section class="listings">
   <div class="wrapper">
     <ul class="properties_list">
-      <li *ngFor="let item of rooms">
+      <li *ngFor="let item of rooms; let i = index">
         <a [routerLink]="['/room/', item.id, 'post']">
           <img
-            src="https://diaocvanphu.vn/wp-content/uploads/2018/11/mau-thiet-ke-noi-that-can-ho-dep.jpg"
+            src="http://localhost:8000/storage/images/{{ images[i]['data'][0].url }}"
             alt=""
             title=""
             class="property_img"
@@ -30,7 +30,16 @@
           {{ item.address }}
         </span>
         <div class="property_details">
-          <h1>{{ item.price }} đ/đêm</h1>
+          <p style="font-size: 17px;font-weight: bold;" [routerLink]="['/room/', item.id, 'post']">
+            <svg version="1.1" viewBox="0 0 20 20" class="is-instant-book mr--6 svg-icon svg-fill" style="width: 15px; height: 15px;"><defs><linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="svgicon_instant_book_a"><stop stop-color="#F68A39" offset="0%"></stop><stop stop-color="#F65E39" offset="100%"></stop></linearGradient></defs><g fill="none" fill-rule="evenodd"><circle pid="0" fill="url(#svgicon_instant_book_a)" cx="10" cy="10" r="10"></circle><path pid="1" d="M10.42 15.158l3.037-6.073A.75.75 0 0 0 12.787 8H10V5.177a.75.75 0 0 0-1.42-.335l-3.037 6.073A.75.75 0 0 0 6.213 12H9v2.823a.75.75 0 0 0 1.42.335z" fill="#FFF"></path></g></svg>
+            {{ item.name_house }}
+          </p>
+          <p>
+            <span class="price1">{{ item.price | currency:'VND':'symbol' }} đ/đêm</span
+            ><i style="clear: both; float: right;">{{
+              item.updated_at | date: "yyyy-MM-dd"
+            }}</i>
+          </p>
           <p>
             <svg
               version="1.1"
@@ -95,7 +104,7 @@
                 d="M307.2,179.2c4.719,0,8.533-3.823,8.533-8.533s-3.814-8.533-8.533-8.533s-8.533,3.823-8.533,8.533 S302.481,179.2,307.2,179.2z"
               ></path>
             </svg>
-            {{ item.bed_room_num }} |
+            {{ item.bed_room_num }} phòng ngủ |
             <svg
               version="1.1"
               id="IconsRepoEditor"
@@ -197,18 +206,8 @@
                 ></rect>
               </g>
             </svg>
-			{{ item.bath_room_num }}
-			
-			<i style="clear: both; float: right;">{{ item.updated_at | date:'yyyy-MM-dd' }}</i>
+            {{ item.bath_room_num }} phòng tắm
           </p>
-          <hr />
-          <div
-            [routerLink]="['/room/', item.id, 'post']"
-            style="text-transform: uppercase;"
-          >
-            {{ item.name_house }}
-          </div>
-          <!-- <p ng-bind-html="">{{ item.description }}</p> -->
         </div>
       </li>
     </ul>

@@ -1,96 +1,14 @@
 <section class="hero1">
   <app-navbar></app-navbar>
   <section class="caption"></section>
-
   <div class="mt-3 mb-3 container">
     <div class="card">
-      <div class="preview">
-        <div class="preview-pic tab-content">
-          <div class="tab-pane active" id="pic-1">
-            <img
-              class="card-img-top"
-              width="100%"
-              height="400"
-              src="https://diaocvanphu.vn/wp-content/uploads/2018/11/mau-thiet-ke-noi-that-can-ho-dep.jpg"
-              alt=""
-            />
-          </div>
-          <div class="tab-pane" id="pic-2">
-            <img
-              width="100%"
-              height="400"
-              src="https://file4.batdongsan.com.vn/2018/07/24/20180724094413-8091.jpg"
-              alt="Học thiết kế web bán hàng Online"
-            />
-          </div>
-          <div class="tab-pane" id="pic-3">
-            <img
-              width="100%"
-              height="400"
-              src="https://media1-reatimes.cdn.vccloud.vn/media/uploaded/27/2016/10/07/noi-that-can-ho-dep5-reatimes-1475840524.jpg"
-              alt="Học thiết kế web bán hàng Online"
-            />
-          </div>
-          <div class="tab-pane" id="pic-4">
-            <img
-              width="100%"
-              height="400"
-              src="https://cafefcdn.com/thumb_w/650/2018/6/19/photo1529392748981-1529392748981566543228.jpg"
-              alt="Học thiết kế web bán hàng Online"
-            />
-          </div>
-          <div class="tab-pane" id="pic-5">
-            <img
-              width="100%"
-              height="400"
-              src="https://thegioinhadat24h.com/wp-content/uploads/2019/10/mau-phong-khach-can-ho-dep-nhat-2018-1024x660.jpg"
-              alt="Học thiết kế web bán hàng Online"
-            />
-          </div>
-        </div>
-        <ul class="preview-thumbnail nav nav-tabs">
-          <li class="active">
-            <a data-target="#pic-1" data-toggle="tab"
-              ><img
-                class="img-responsive img-thumbnail"
-                src="https://diaocvanphu.vn/wp-content/uploads/2018/11/mau-thiet-ke-noi-that-can-ho-dep.jpg"
-                alt="Học thiết kế web bán hàng Online"
-            /></a>
-          </li>
-          <li>
-            <a data-target="#pic-2" data-toggle="tab"
-              ><img
-                class="img-responsive img-thumbnail"
-                src="https://file4.batdongsan.com.vn/2018/07/24/20180724094413-8091.jpg"
-                alt="Học thiết kế web bán hàng Online"
-            /></a>
-          </li>
-          <li>
-            <a data-target="#pic-3" data-toggle="tab"
-              ><img
-                class="img-responsive img-thumbnail"
-                src="https://media1-reatimes.cdn.vccloud.vn/media/uploaded/27/2016/10/07/noi-that-can-ho-dep5-reatimes-1475840524.jpg"
-                alt="Học thiết kế web bán hàng Online"
-            /></a>
-          </li>
-          <li>
-            <a data-target="#pic-4" data-toggle="tab"
-              ><img
-                class="img-responsive img-thumbnail"
-                src="https://cafefcdn.com/thumb_w/650/2018/6/19/photo1529392748981-1529392748981566543228.jpg"
-                alt="Học thiết kế web bán hàng Online"
-            /></a>
-          </li>
-          <li>
-            <a data-target="#pic-5" data-toggle="tab"
-              ><img
-                class="img-responsive img-thumbnail"
-                src="https://thegioinhadat24h.com/wp-content/uploads/2019/10/mau-phong-khach-can-ho-dep-nhat-2018-1024x660.jpg"
-                alt="Học thiết kế web bán hàng Online"
-            /></a>
-          </li>
-        </ul>
-      </div>
+      <mdb-carousel class="carousel slide carousel-fade" [type]="'carousel-thumbnails'" [animation]="'fade'">
+        <mdb-carousel-item *ngFor="let item of image">
+          <img class="d-block w-100" src="http://localhost:8000/storage/images/{{ item.url }}" alt="First slide">
+        </mdb-carousel-item>
+      </mdb-carousel>
+
 
       <div class="details">
         <h2 class="mt-5">
@@ -364,30 +282,26 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 x="0px"
                 y="0px"
-                viewBox="0 0 60 60"
-                style="enable-background:new 0 0 60 60;"
-                xml:space="preserve"
                 width="20px"
                 height="20px"
+                viewBox="0 0 32.001 32.001"
+                style="enable-background:new 0 0 32.001 32.001;"
+                xml:space="preserve"
                 fill="#000000"
                 stroke="#000000"
                 stroke-width="0"
               >
                 <g id="IconsRepo_bgCarrier"></g>
-                <path
-                  d="M46.439,4H31V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v3H13.561C12.148,4,11,5.148,11,6.561v50.879 C11,58.852,12.148,60,13.561,60h32.879C47.852,60,49,58.852,49,57.439V6.561C49,5.148,47.852,4,46.439,4z M13.561,6H29v2.101 c-2.279,0.465-4,2.484-4,4.899c0,2.757,2.243,5,5,5s5-2.243,5-5c0-2.414-1.721-4.434-4-4.899V6h15.439C46.749,6,47,6.251,47,6.561 V50H13V6.561C13,6.251,13.251,6,13.561,6z M30,14c0.552,0,1-0.447,1-1v-2.816c1.161,0.414,2,1.514,2,2.816c0,1.654-1.346,3-3,3 s-3-1.346-3-3c0-1.302,0.839-2.402,2-2.816V13C29,13.553,29.448,14,30,14z M46.439,58H13.561C13.251,58,13,57.749,13,57.439V52h34 v5.439C47,57.749,46.749,58,46.439,58z"
-                ></path>
-                <path
-                  d="M29,39.122V40c0,0.553,0.448,1,1,1s1-0.447,1-1v-0.882c1.091-0.222,2.085-0.801,2.819-1.668 c0.611-0.724,0.893-1.648,0.793-2.605c-0.103-0.978-0.606-1.885-1.383-2.488L31,30.623v-5.438c1.161,0.414,2,1.514,2,2.816 c0,0.553,0.448,1,1,1s1-0.447,1-1c0-2.414-1.721-4.434-4-4.899V22c0-0.553-0.448-1-1-1s-1,0.447-1,1v1.104 c-1.091,0.222-2.085,0.801-2.818,1.668c-0.611,0.722-0.894,1.646-0.794,2.603c0.102,0.979,0.606,1.887,1.383,2.491L29,31.6v5.438 c-1.161-0.414-2-1.514-2-2.816c0-0.553-0.448-1-1-1s-1,0.447-1,1C25,36.637,26.721,38.657,29,39.122z M27.999,28.288 c-0.35-0.272-0.576-0.681-0.622-1.12c-0.042-0.409,0.075-0.801,0.331-1.104c0.348-0.411,0.798-0.699,1.292-0.875v3.877 L27.999,28.288z M32.001,33.935c0.349,0.271,0.576,0.68,0.622,1.118c0.043,0.41-0.075,0.803-0.331,1.105 c-0.348,0.411-0.798,0.699-1.292,0.875v-3.878L32.001,33.935z"
-                ></path>
-                <path
-                  d="M22,45h16c0.552,0,1-0.447,1-1s-0.448-1-1-1H22c-0.552,0-1,0.447-1,1S21.448,45,22,45z"
-                ></path>
-                <path
-                  d="M22,48h16c0.552,0,1-0.447,1-1s-0.448-1-1-1H22c-0.552,0-1,0.447-1,1S21.448,48,22,48z"
-                ></path>
+                <g id="IconsRepoEditor">
+                  <path
+                    d="M22.708,2.258c-1.849,0-3.566,0.551-5.013,1.488c0.203-1.24,0.158-2.395-0.356-3.111c-1.735-2.4-4.639,2.816-5.973,2.283 C10.029,2.385,7.188-0.4,5.304,0.736C3.673,1.718,6.327,8.312,7.609,9.265c0,0,2.068,0.492,4.098,0.492 c0.758,0,1.416-0.041,1.947-0.092c-0.1,0.488-0.15,0.994-0.168,1.508c-0.617,0.055-1.244,0.094-1.885,0.094 c-1.598,0-3.135-0.174-4.576-0.492c-2.533,2.045-6.969,9.314-6.969,12.482c0,5.714,5.034,8.744,11.246,8.744 c6.209,0,11.243-3.03,11.243-8.743c0-0.687-0.199-1.57-0.531-2.562c0.229,0.019,0.459,0.035,0.693,0.035 c5.094,0,9.237-4.144,9.237-9.237C31.945,6.403,27.8,2.258,22.708,2.258z M14.812,25.038c-0.129,0.277-0.307,0.521-0.531,0.73 c-0.227,0.209-0.494,0.379-0.805,0.508c-0.311,0.129-0.646,0.207-1.01,0.229v0.764h-1.693v-0.992 c-0.09-0.041-0.176-0.078-0.26-0.115c-0.086-0.035-0.168-0.074-0.248-0.113v0.373H8.572v-2.54h1.693 c0.145,0.162,0.287,0.303,0.43,0.418c0.141,0.117,0.285,0.217,0.436,0.289c0.148,0.078,0.314,0.137,0.494,0.17 c0.182,0.037,0.391,0.057,0.623,0.057c0.307,0,0.561-0.063,0.762-0.188c0.203-0.125,0.303-0.289,0.303-0.49 c0-0.168-0.051-0.314-0.156-0.439s-0.24-0.232-0.406-0.32c-0.164-0.088-0.346-0.158-0.543-0.211 c-0.197-0.053-0.393-0.096-0.588-0.127c-0.686-0.104-1.234-0.266-1.645-0.484c-0.412-0.217-0.727-0.454-0.949-0.713 c-0.221-0.258-0.367-0.521-0.436-0.793c-0.068-0.27-0.102-0.508-0.102-0.719c0-0.307,0.057-0.596,0.168-0.871 c0.113-0.272,0.273-0.518,0.479-0.729c0.205-0.215,0.447-0.392,0.725-0.533c0.279-0.142,0.584-0.235,0.914-0.282v-0.8h1.693 v0.921c0.25,0.071,0.475,0.168,0.678,0.288V17.96h1.691v2.541h-1.705c-0.137-0.151-0.27-0.289-0.398-0.406 c-0.128-0.115-0.266-0.213-0.412-0.288c-0.145-0.075-0.303-0.136-0.477-0.177c-0.174-0.041-0.377-0.062-0.611-0.062 c-0.338,0-0.598,0.08-0.779,0.242c-0.181,0.162-0.271,0.334-0.271,0.521c0,0.522,0.563,0.871,1.693,1.041 c0.699,0.104,1.26,0.274,1.674,0.514c0.414,0.236,0.732,0.494,0.949,0.773c0.217,0.276,0.357,0.551,0.418,0.819 c0.059,0.271,0.09,0.491,0.09,0.66C15.006,24.459,14.941,24.758,14.812,25.038z M23.478,18.581l-0.771-0.918l-0.772,0.918 c-3.305-0.356-5.938-2.982-6.309-6.285l1.018-0.854l-1.002-0.844c0.412-3.262,3.031-5.844,6.312-6.189l0.752,0.895l0.752-0.895 c3.277,0.346,5.896,2.924,6.312,6.182l-1.08,0.904l1.08,0.908C29.355,15.653,26.749,18.229,23.478,18.581z"
+                  ></path>
+                  <path
+                    d="M23.734,11.139c-0.037-0.076-0.084-0.146-0.139-0.211l-0.888-5.137l-0.941,5.197h0.003 c-0.138,0.189-0.218,0.42-0.218,0.67c0,0.639,0.519,1.158,1.156,1.158c0.133,0,0.26-0.027,0.379-0.07l-0.002,0.006l3.498,0.408 l-2.847-2.027L23.734,11.139z"
+                  ></path>
+                </g>
               </svg>
-              Giá bán: <strong>{{ room.price }} đ</strong>
+              <strong> {{ room.price | currency: "VND":"symbol" }}</strong> /đêm
             </h5>
             <p>
               <svg

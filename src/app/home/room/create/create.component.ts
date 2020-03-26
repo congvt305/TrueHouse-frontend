@@ -4,8 +4,7 @@ import { Router } from "@angular/router";
 import { IRoom } from "../../../interface/i-room";
 import { RoomService } from "../../../service/room.service";
 import { FileUploader } from "ng2-file-upload";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: "app-create",
@@ -24,45 +23,32 @@ export class CreateComponent implements OnInit {
 
   ERROR_MESSAGE = {
     name_house: [
-      {type: 'required', message: 'User is required.'},
-      {type: 'minlength', message: 'Username has min length : 6'},
+      { type: "required", message: "User is required." },
+      { type: "minlength", message: "Username has min length : 6" },
+      { type: "maxlength", message: "Username has max length : 60" }
     ],
-    house_type: [
-      {type: 'required', message: 'House type is required.'},
-    ],
-    room_type: [
-      {type: 'required', message: 'Room type is required.'},
-    ],
-    address: [
-      {type: 'required', message: 'Address is required.'},
-    ],
-    bed_room_num: [
-      {type: 'required', message: 'Bed room num is required.'},
-    ],
+    house_type: [{ type: "required", message: "House type is required." }],
+    room_type: [{ type: "required", message: "Room type is required." }],
+    address: [{ type: "required", message: "Address is required." }],
+    bed_room_num: [{ type: "required", message: "Bed room num is required." }],
     bath_room_num: [
-      {type: 'required', message: 'Bath room num is required.'},
+      { type: "required", message: "Bath room num is required." }
     ],
-    description: [
-      {type: 'required', message: 'Description is required.'},
-    ],
-    price: [
-      {type: 'required', message: 'Price type is required.'},
-    ],
-    status: [
-      {type: 'required', message: 'House type is required.'},
-    ],
+    description: [{ type: "required", message: "Description is required." }],
+    price: [{ type: "required", message: "Price type is required." }],
+    status: [{ type: "required", message: "House type is required." }]
   };
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private roomService: RoomService,
-    private http: HttpClient
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
     this.formCreateRoom = this.fb.group({
-      name_house: ["", [Validators.required, Validators.minLength(6)]],
+      name_house: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
       house_type: ["", [Validators.required]],
       room_type: ["", [Validators.required]],
       address: ["", [Validators.required]],
@@ -71,8 +57,8 @@ export class CreateComponent implements OnInit {
       description: ["", [Validators.required]],
       price: ["", [Validators.required]],
       user_id: [sessionStorage.getItem("token")],
-      status: ["",[Validators.required]],
-      document: [null, null],
+      status: ["", [Validators.required]],
+      images: [null, null],
       type: [null, Validators.compose([Validators.required])]
     });
   }
@@ -80,9 +66,7 @@ export class CreateComponent implements OnInit {
   onSubmit(data) {
     this.model = data;
     this.roomService.create(this.model).subscribe((result: any) => {
-      console.log(result["data"].id);
       let house_id = result["data"].id;
-
       for (let i = 0; i < this.uploader.queue.length; i++) {
         let fileItem = this.uploader.queue[i]._file;
         if (fileItem.size > 10000000) {
@@ -90,27 +74,17 @@ export class CreateComponent implements OnInit {
           return;
         }
       }
-
       for (let j = 0; j < this.uploader.queue.length; j++) {
-        let data = new FormData();
         let fileItem = this.uploader.queue[j]._file;
-        console.log(fileItem);
-        data.append("file", fileItem);
+        const data = new FormData();
+        data.append("file", fileItem, fileItem.name);
         data.append("fileSeq", "seq" + j);
-        this.uploadFile(data, house_id).subscribe(data => {
-          console.log(data);
+        this.imageService.uploadFile(data, house_id).subscribe(result => {
+          console.log(result);
         });
       }
       this.uploader.clearQueue();
-      alert("Thanh cong");
-      this.router.navigate(['home']);
+      this.router.navigate(["/"]);
     });
-  }
-
-  uploadFile(data: FormData, house_id) {
-    return this.http.post(
-      "http://localhost:8000/api/multiple-image/" + house_id,
-      data
-    );
   }
 }

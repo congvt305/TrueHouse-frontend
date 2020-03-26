@@ -27,7 +27,11 @@
     <div class="form-row">
     <div class="form-group col">
       <label>Loại nhà</label>
-      <input type="text" class="form-control" formControlName="house_type"/>
+      <select class="form-control" formControlName="house_type">
+        <option selected>Nhà riêng</option>
+        <option>Căn hộ studio</option>
+        <option>Căn hộ chung cư</option>
+      </select>
       <div *ngFor="let errors of ERROR_MESSAGE.house_type" class="text-danger mt-2">
         <ng-container
           *ngIf="(formCreateRoom.get('house_type').hasError(errors.type)) &&(formCreateRoom.get('house_type').touched) ">
@@ -37,7 +41,10 @@
     </div>
     <div class="form-group col">
       <label>Loại phòng</label>
-      <input type="text" class="form-control" formControlName="room_type"/>
+      <select class="form-control" formControlName="room_type">
+        <option selected>Phòng riêng</option>
+        <option>Nguyên căn</option>
+      </select>
       <div *ngFor="let errors of ERROR_MESSAGE.room_type" class="text-danger mt-2">
         <ng-container
           *ngIf="(formCreateRoom.get('room_type').hasError(errors.type)) &&(formCreateRoom.get('room_type').touched) ">
@@ -70,8 +77,8 @@
   </div>
   <div class="form-row">
     <div class="form-group col">
-      <label>Giá tiền theo đêm</label>
-      <input type="number" class="form-control" formControlName="price" />
+      <label>Giá tiền: VND/đêm</label>
+      <input type="number" class="form-control" formControlName="price" placeholder="0 Đồng"/>
       <div *ngFor="let errors of ERROR_MESSAGE.price" class="text-danger mt-2">
         <ng-container
           *ngIf="(formCreateRoom.get('price').hasError(errors.type)) &&(formCreateRoom.get('price').touched) ">
@@ -81,9 +88,10 @@
     </div>
     <div class="form-group col">
       <label>Status</label>
-      <select formControlName="status" class="form-control">
-        <option value="1" selected>Abc</option>
-        <option value="2">Xyz</option>
+      <select class="form-control" formControlName="status">
+        <option selected>Có thể thuê</option>
+        <option>Đang bảo trì</option>
+        <option>Hết phòng</option>
       </select>
       <div *ngFor="let errors of ERROR_MESSAGE.status" class="text-danger mt-2">
         <ng-container
@@ -108,7 +116,7 @@
       </div>
     </div>
       <br>
-      <input formControlName="document" class="form-control-file" type="file" ng2FileSelect accept=".png, .jpg" [uploader]="uploader" multiple/><br/>
+      <input formControlName="images" class="form-control-file" type="file" ng2FileSelect accept=".png, .jpg" [uploader]="uploader" multiple/><br/>
       <br>
       <table class="table table-striped">
         <thead>

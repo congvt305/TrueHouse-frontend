@@ -490,11 +490,11 @@ header nav .login_btn:hover{
     position: absolute;
     top: 10px;
     left: 10px;
-    padding: 15px 20px;
+    padding: 10px 15px;
     background: #ffffff;
     color: #514d4d;
     font-family: "lato-bold", Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     letter-spacing: 1px;
 
@@ -510,7 +510,6 @@ header nav .login_btn:hover{
 }
 
 .listings ul li .property_details{
-    width: 87.64705882352941%;
     padding: 2.941176470588235% 5.882352941176471% 4.117647058823529% 5.882352941176471%;
     border-bottom: 1px solid #f2f1f1;
     border-left: 1px solid #f2f1f1;
@@ -529,7 +528,6 @@ header nav .login_btn:hover{
 }
 
 .listings ul li .property_details h1{
-    color: #666464;
     font-family: "lato-bold", Helvetica, Arial, sans-serif;
     font-size: 16px!important;
     font-weight: bold;
@@ -539,15 +537,19 @@ header nav .login_btn:hover{
 
 .listings ul li .property_details h1 a{
     text-decoration: none;
-    color: #666464;
 }
 
 .listings ul li .property_details h2{
-    color: #9d9d9d;
     font-family: "lato-regular", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    line-height: 26px;
-    font-weight: normal;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.price1 {
+    font-family: "lato-regular", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
 }
 
 .listings ul li .property_details .property_size{

@@ -15,17 +15,28 @@
                 <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
                     <div class="form-group" >
                         <label>Email</label>
+                        <small *ngFor="let errors of ERROR_MESSAGE.email" class="text-danger">
+                            <ng-container
+                                    *ngIf="(loginForm.get('email').hasError(errors.type)) &&(loginForm.get('email').touched) ">
+                                {{errors.message}}
+                            </ng-container>
+                        </small>
                         <input type="email" class="form-control" formControlName="email" required/>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
+                        <small *ngFor="let errors of ERROR_MESSAGE.password" class="text-danger">
+                            <ng-container
+                                    *ngIf="(loginForm.get('password').hasError(errors.type)) &&(loginForm.get('password').touched) ">
+                                {{errors.message}}
+                            </ng-container>
+                        </small>
                         <input type="password" class="form-control" formControlName="password" required/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" >
                         <button type="submit" class="btn btn-primary float-right" >Login</button>
                     </div>
                 </form>
-                <app-register></app-register>
                 <a  class="google btn" (click)="signInWithGoogle()"><i class="fa fa-google fa-fw">
                 </i> Login with Google+
                 </a>

@@ -18,10 +18,12 @@ export class UserService {
 
   constructor(protected http: HttpClient) {
   }
-
+  idUser;
   updateUser(user) {
     this.userData.next(user);
-    console.log(this.user);
+  }
+  putPassword(user) {
+    this.http.put<IUser>(this.url , user);
   }
   updateLoggedIn(loggedIn: boolean) {
     this.loggedInData.next(loggedIn);

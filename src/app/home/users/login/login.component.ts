@@ -1,25 +1,35 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { Router } from "@angular/router";
-import { UserService } from "../../../service/user.service";
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../../../service/user.service';
 import {
   AuthService,
   FacebookLoginProvider,
   GoogleLoginProvider,
   SocialUser
-} from "angularx-social-login";
+} from 'angularx-social-login';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit {
   loginForm;
   userId;
-  IdLogin = sessionStorage.getItem('token')
+  IdLogin = sessionStorage.getItem('token');
 
+  ERROR_MESSAGE = {
+    email: [
+      {type: 'email', message: 'Email invalid.'},
+      {type: 'minlength', message: 'Username has min length : 6'}
+    ],
+    password: [
+      {type: 'required', message: 'Password is required.'},
+      {type: 'minlength', message: 'Password has min length: 6'}
+    ]
+  };
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -29,8 +39,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [],
-      password: []
+      email: ['', [Validators.email, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
     this.authService.authState.subscribe(user => {
@@ -41,16 +51,16 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 
-  logout(){
-    localStorage.removeItem("token");
+  logout() {
+    localStorage.removeItem('token');
     this.router.navigate(['home']);
   }
 
@@ -60,15 +70,19 @@ export class LoginComponent implements OnInit {
       password: data.password
     };
     this.userService.login(user).subscribe(next => {
-      if (next.message === "success") {
-        console.log(next['data']['id']);
-        this.userId = next['data']['id'];
-        sessionStorage.setItem("isLogin", "true");
-        sessionStorage.setItem("token", this.userId);
-        this.userService.updateUser(next);
-        this.router.navigate(['home']);
+      if (data.email === '' || data.password === '') {
+        alert('Ban chua nhap email hoac password');
       } else {
-        alert("Sai thông tin đăng nhập");
+        if (next.message === 'success') {
+          // @ts-ignore
+          this.userId = next.data.id;
+          sessionStorage.setItem('isLogin', 'true');
+          sessionStorage.setItem('token', this.userId);
+          this.userService.updateUser(next);
+          this.router.navigate(['']);
+        } else {
+          alert('Sai thông tin đăng nhập');
+        }
       }
     });
   }

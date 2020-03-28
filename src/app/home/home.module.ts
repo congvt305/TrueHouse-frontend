@@ -21,7 +21,8 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderComponent } from './order/order.component';
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -50,7 +51,8 @@ export function provideConfig() {
     LoginComponent, 
     RegisterComponent, 
     UserEditComponent,
-    ChangePasswordComponent],
+    ChangePasswordComponent,
+    OrderComponent],
   imports: [
     FileUploadModule,
     CommonModule,
@@ -61,6 +63,7 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
+    Ng2SearchPipeModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [

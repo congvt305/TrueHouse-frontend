@@ -1,7 +1,7 @@
 <section class="search">
   <div class="wrapper">
         <div class="searchbar mt-4">
-          <input class="search_input" type="text" name="" placeholder="Search...">
+          <input class="search_input" type="text" name="" placeholder="Search..." [(ngModel)]="keyword">
           <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
         <button class="mt-4" mdbBtn type="button" color="while" style="border-radius: 30px;" data-target="#basicExample"
@@ -10,7 +10,7 @@
   </div>
 </section>
 
-<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+<div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -36,7 +36,7 @@
       </div>
       <div class="modal-footer">
         <a aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Xóa</a>
-        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Áp
+        <button type="button" style="border-radius: 30px;" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Áp
           dụng</button>
       </div>
     </div>

@@ -15,7 +15,7 @@ export class RoomService {
   constructor(private httpClient: HttpClient) {
   }
 
- 
+
   getAll(): Observable<HttpResult[]> {
     return this.httpClient.get<HttpResult[]>(this.url);
   }
@@ -35,5 +35,7 @@ export class RoomService {
   // delete(id: number) {
   //   return this.httpClient.delete(this.url + '/houses/' + id);
   // }
-
+  getListByOwnerID(user_id: number): Observable<HttpResult[]> {
+    return this.httpClient.get<HttpResult[]>( 'http://localhost:8000/api/'+'users/' + user_id + '/houses');
+  }
 }

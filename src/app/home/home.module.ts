@@ -21,6 +21,8 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { OrderComponent } from './users/order/order.component';
+import { HousesOwnedByUserComponent } from './houses-owned-by-user/houses-owned-by-user.component';
 
 const config = new AuthServiceConfig([
   {
@@ -41,16 +43,18 @@ export function provideConfig() {
   declarations: [
     HomeComponent,
     HeaderComponent,
-    FooterComponent, 
-    SearchComponent, 
-    RoomComponent, 
-    CreateComponent, 
-    EditComponent, 
-    NavbarComponent, 
-    LoginComponent, 
-    RegisterComponent, 
+    FooterComponent,
+    SearchComponent,
+    RoomComponent,
+    CreateComponent,
+    EditComponent,
+    NavbarComponent,
+    LoginComponent,
+    RegisterComponent,
     UserEditComponent,
-    ChangePasswordComponent],
+    ChangePasswordComponent,
+    OrderComponent,
+    HousesOwnedByUserComponent],
   imports: [
     FileUploadModule,
     CommonModule,

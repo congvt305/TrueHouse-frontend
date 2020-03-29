@@ -18,7 +18,6 @@ export class UserService {
 
   constructor(protected http: HttpClient, private router: Router) {}
 
-  idUser;
   updateUser(user) {
     this.userData.next(user);
   }

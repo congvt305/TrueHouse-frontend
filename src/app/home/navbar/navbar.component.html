@@ -9,7 +9,15 @@
                 <li><a href="#">Sell</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a [routerLink]="['changePassword/' + id]" >ChangePassword</a></li>
+                <li>
+                    <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" [routerLink]="['edit/' + id]" >Edit</a>
+                        <a class="dropdown-item" [routerLink]="['changePassword/' + id]" >Change password</a>
+                    </div>
+                </li>
             </ul>
             <app-login></app-login>
             <app-register></app-register>

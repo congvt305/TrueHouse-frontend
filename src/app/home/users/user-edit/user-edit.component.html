@@ -1,1 +1,65 @@
-<p>user-edit works!</p>
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit(editUserForm.value)">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div>
+                        <div class="justify-content-center ">
+                            <h4 class="font-weight-bold text-center">User Profile</h4>
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                            <div *ngIf="name.invalid && (name.dirty||name.touched|| name.submitted)" class="alert alert-danger">
+                                <div *ngIf="name.errors.required">
+                                    Name is required
+                                </div>
+                                <div *ngIf="name.errors.maxLength">
+                                    Name must be longest 255 characters long
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" formControlName="email">
+                            <div *ngIf="email.invalid && (email.dirty||email.touched||email.submitted)" class="alert alert-danger">
+                                <div *ngIf="email.errors.required">
+                                    Email is required
+                                </div>
+                                <div *ngIf="email.errors.email">
+                                    Email invalid
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="number" class="form-control" formControlName="phone">
+                            <div *ngIf="phone.invalid && (phone.dirty||email.touched||phone.submitted)" class="alert alert-danger">
+                                <div *ngIf="phone.errors.required">
+                                    Number phone is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of birth</label>
+                            <input type="date" class="form-control" formControlName="dob">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Avatar: </label> <br>
+                            <img [src]="currentAvatar" style="width: 200px">
+                            <input type="file" class="form-control-file" formControlName="avatar" (change)="getFile($event)"
+                                   accept="image/*">
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="button" routerLink="" class="btn btn-primary">Back</button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="reset" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+</form>

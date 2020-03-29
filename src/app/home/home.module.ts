@@ -21,6 +21,8 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { CommentComponent } from './comment/comment.component';
+import { RatingModule } from 'ng-starrating';
 
 const config = new AuthServiceConfig([
   {
@@ -50,7 +52,8 @@ export function provideConfig() {
     LoginComponent, 
     RegisterComponent, 
     UserEditComponent,
-    ChangePasswordComponent],
+    ChangePasswordComponent,
+    CommentComponent],
   imports: [
     FileUploadModule,
     CommonModule,
@@ -61,7 +64,8 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    RatingModule,
   ],
   providers: [
     {

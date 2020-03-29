@@ -18,7 +18,9 @@ const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', children: [
             {path: '', component: HomeComponent},
-            {path: 'changePassword/:id', component: ChangePasswordComponent}
+            {path: 'changePassword/:id', component: ChangePasswordComponent},
+            {path: 'edit/:id', component: UserEditComponent},
+
         ]
         },
     {
@@ -33,7 +35,6 @@ const routes: Routes = [
         path: 'user',
         children: [
             {path: 'register', component: RegisterComponent},
-            {path: 'edit/:', component: UserEditComponent},
             {path: 'login', component: LoginComponent}
         ]
     }

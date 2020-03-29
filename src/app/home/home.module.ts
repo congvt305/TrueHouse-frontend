@@ -21,6 +21,9 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+import { CommentComponent } from './comment/comment.component';
+import { RatingModule } from 'ng-starrating';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderComponent } from './order/order.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -54,6 +57,7 @@ export function provideConfig() {
     RegisterComponent, 
     UserEditComponent,
     ChangePasswordComponent,
+    CommentComponent,
     OrderComponent],
   imports: [
   FileUploadModule,
@@ -65,6 +69,7 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
+    RatingModule,
     Ng2SearchPipeModule,
     MDBBootstrapModule.forRoot(),
     NgxDaterangepickerMd.forRoot()

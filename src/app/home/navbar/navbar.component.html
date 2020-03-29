@@ -9,22 +9,28 @@
                 <li><a href="#">Sell</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+                <li>
+                    <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" [routerLink]="['edit/' + id]" >Edit</a>
+                        <a class="dropdown-item" [routerLink]="['changePassword/' + id]" >Change password</a>
+                    </div>
+                </li>
             </ul>
             <app-login></app-login>
             <app-register></app-register>
-
             <div class="btn-group" mdbDropdown>
                 <button *ngIf="id" mdbDropdownToggle type="button" class="login_btn dropdown-toggle"
                     mdbWavesEffect>
                     <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span>
             </button>
-
                 <div class="dropdown-menu dropdown-primary mt-5 ml-5">
                     <a class="dropdown-item" [routerLink]="['/room/create']"><i class="fas fa-plus"></i> Create House</a>
                     <div class="divider dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><i class="fas fa-history"></i> Lịch sử</a>
                     <div class="divider dropdown-divider"></div>
-                    <a class="dropdown-item" [routerLink]="['changePassword/' + id]"><i class="fas fa-key"></i> Change Password</a>
                     <div class="divider dropdown-divider"></div>
                     <a class="dropdown-item" (click)="onLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>

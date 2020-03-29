@@ -15,7 +15,6 @@ export class RoomService {
   constructor(private httpClient: HttpClient) {
   }
 
- 
   getAll(): Observable<HttpResult[]> {
     return this.httpClient.get<HttpResult[]>(this.url);
   }

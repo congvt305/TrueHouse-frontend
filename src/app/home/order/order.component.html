@@ -45,7 +45,7 @@
       </div>
       <div class="row">
         <div class="col-7 mt-2">
-          Total Price:
+          Total Price: {{ price * numberRoom | currency: "VND":"symbol"}}
         </div>
         <div class="col-5">
           <button type="submit" style="border-radius: 30px;" class="add-to-cart waves-light" mdbBtn color="info"

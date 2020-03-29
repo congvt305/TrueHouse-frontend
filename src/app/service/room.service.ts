@@ -9,6 +9,11 @@ import { IRoom } from '../interface/i-room';
 })
 export class RoomService {
 
+  address = '';
+  bed_room_num = '';
+  bath_room_num = '';
+  price = '';
+
   private url = 'http://localhost:8000/api/houses/';
   rooms: any;
 
@@ -26,6 +31,14 @@ export class RoomService {
   create(room: IRoom) {
     return this.httpClient.post(this.url, room);
   }
+
+  search(address, bed_room_num, bath_room_num, price):Observable<HttpResult[]> {
+    return this.httpClient.get<HttpResult[]>(this.url + `search?address=${address}
+    &bed_room_num=${bed_room_num}
+    &bath_room_num=${bath_room_num}
+    &price=${price}`);
+  }
+
 
   // update(user: IRoom, id) {
   //   return this.httpClient.put(this.url + '/houses/' + id, user);

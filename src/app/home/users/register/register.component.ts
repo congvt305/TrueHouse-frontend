@@ -65,14 +65,13 @@ export class RegisterComponent implements OnInit {
             };
             this.userService.register(user).subscribe();
             this.userService.login(user).subscribe(next => {
-
                 if (next.message === 'success') {
-                    // @ts-ignore
-                    this.userId = next.data.id;
+                    this.userId = next.data['id'];
                     sessionStorage.setItem('isLogin', 'true');
                     sessionStorage.setItem('token', this.userId);
                     this.userService.updateUser(next);
-                    this.router.navigate(['']);
+                    alert('Đăng ký thành công!');
+                    location.reload();
                 }
             });
         }

@@ -21,8 +21,7 @@ export class NavbarComponent implements OnInit {
   onLogout() {
     if (confirm('Are you sure you want to log out ?')) {
       this.userService.logout();
-      this.router.navigate(["home"]);
-    
+      location.reload();
     }
   }
 }

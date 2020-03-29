@@ -1,7 +1,7 @@
 <section class="search">
   <div class="wrapper">
         <div class="searchbar mt-4">
-          <input class="search_input" type="text" name="" placeholder="Search..." [(ngModel)]="keyword">
+          <input class="search_input" type="text" name="" placeholder="Search..." (keyup)="getKeyword($event)">
           <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
         <button class="mt-4" mdbBtn type="button" color="while" style="border-radius: 30px;" data-target="#basicExample"
@@ -14,31 +14,34 @@
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
+      <form (ngSubmit)="onSubmit(getFormSearch.value)" [formGroup]="getFormSearch">
       <div class="modal-body">
         <div class="row">
           <div class="md-form col-6">
-            <input mdbInput type="number" class="form-control">
+            <input mdbInput type="number" class="form-control" formControlName="bed_room_num">
             <label class="col">Số lượng phòng ngủ</label>
           </div>
           <div class="md-form col-6">
-            <input mdbInput type="number" class="form-control">
+            <input mdbInput type="number" class="form-control" formControlName="bath_room_num">
             <label class="col">Số lượng phòng tắm</label>
           </div>
         </div>
         <div class="md-form">
-          <input mdbInput type="text" class="form-control">
+          <input mdbInput type="text" class="form-control" (keyup)="getKeywordBy($event)" formControlName="address">
           <label class="">Địa chỉ</label>
         </div>
         <div class="md-form">
-          <input mdbInput type="number" class="form-control">
+          <input mdbInput type="number" class="form-control" formControlName="price">
           <label class="">Giá tiền</label>
         </div>
       </div>
       <div class="modal-footer">
         <a aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Xóa</a>
-        <button type="button" style="border-radius: 30px;" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Áp
+        <button type="submit" style="border-radius: 30px;" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Áp
           dụng</button>
       </div>
+    </form>
     </div>
+
   </div>
 </div>

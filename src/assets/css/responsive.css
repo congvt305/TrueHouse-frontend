@@ -584,7 +584,7 @@ header nav .login_btn:hover{
 
 .listings ul.properties_list li img.property_img{
     width: 100%;
-    height: auto!important;
+    height: 200px;
     vertical-align: top;
 }
 

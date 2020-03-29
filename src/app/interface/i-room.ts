@@ -1,5 +1,5 @@
 export interface IRoom {
-    id: number,
+    id?: number,
     name_house: string;
     house_type: string;
     room_type: string;
@@ -11,5 +11,4 @@ export interface IRoom {
     user_id: number;
     status: boolean;
     updated_at: string;
-
 }

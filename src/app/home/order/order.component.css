@@ -1,0 +1,31 @@
+.order {
+    width: 25rem;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 15px 0 15px 20px;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
+}
+
+ 
+.add-to-cart, .like {  
+    padding: 7px 13px 7px 13px; 
+    background: #548fca;    
+    border: none;   
+    color: #fff;    
+    text-decoration:none; 
+    -webkit-transition: background .3s ease; 
+    transition: background .3s ease;
+    }
+     
+    .add-to-cart:hover, .like:hover {   
+    background: #b36800;    
+    color: #fff;    
+    text-decoration:none;
+    }
+     

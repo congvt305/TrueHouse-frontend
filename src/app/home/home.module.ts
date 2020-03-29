@@ -21,8 +21,12 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 import { CommentComponent } from './comment/comment.component';
 import { RatingModule } from 'ng-starrating';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderComponent } from './order/order.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 const config = new AuthServiceConfig([
   {
@@ -53,9 +57,10 @@ export function provideConfig() {
     RegisterComponent, 
     UserEditComponent,
     ChangePasswordComponent,
-    CommentComponent],
+    CommentComponent,
+    OrderComponent],
   imports: [
-    FileUploadModule,
+  FileUploadModule,
     CommonModule,
     RouterModule,
     AppRoutingModule,
@@ -64,8 +69,10 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
-    MDBBootstrapModule.forRoot(),
     RatingModule,
+    Ng2SearchPipeModule,
+    MDBBootstrapModule.forRoot(),
+    NgxDaterangepickerMd.forRoot()
   ],
   providers: [
     {

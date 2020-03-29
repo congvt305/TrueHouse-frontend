@@ -27,7 +27,6 @@ export class RoomComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get("id");
     this.getRoomId(id);
     this.user = this.userService.user;
-    console.log(this.room);    
   }
 
   getRoomId(id) {    
@@ -39,9 +38,7 @@ export class RoomComponent implements OnInit {
 
   getImageById(house) {
     this.imageService.getImageById(house.id).subscribe(data => {
-      this.image = data['data'];
-      console.log(this.image);
-      
+      this.image = data['data'];      
     });
   }
 }

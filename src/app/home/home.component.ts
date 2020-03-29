@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IRoom } from '../interface/i-room';
 import { RoomService } from '../service/room.service';
 import { ImageService } from '../service/image.service';
-import { IImage } from '../interface/i-image';
+import { IImage } from 'src/app/interface/i-image';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,11 @@ import { IImage } from '../interface/i-image';
 })
 export class HomeComponent implements OnInit {
 
-  rooms: IRoom[] = [];
-  images = [];
+  keyword;
 
+  rooms: IRoom[] = [];
+
+  images = [];
 
   constructor(private roomService: RoomService,
     private imageService: ImageService) { }
@@ -23,17 +26,15 @@ export class HomeComponent implements OnInit {
   }
 
   getAll() {
-    this.roomService.getAll().subscribe(data => {      
-      for (const room of data['data']) {
-          this.rooms.push(room);
-          this.getImageById(room.id);          
-      }      
-    });
-  }
+    this.roomService.getAll().subscribe(data => {
+      for (const [i, room] of data['data'].entries()) {
+        this.rooms.push(room);
 
-  getImageById(house) {
-    this.imageService.getImageById(house).subscribe(data => {
-      this.images.push(data);
+        this.imageService.getImageById(room.id).subscribe(data => {
+          this.rooms[i]['thumb'] = data['data'][0].url;
+        });
+      }
+      console.log(this.rooms);
     });
   }
 }

@@ -2,11 +2,12 @@
 <app-search></app-search>
 <section class="listings">
   <div class="wrapper">
+    <input class="search_input" type="text" name="" placeholder="Search..." [(ngModel)]="keyword">
     <ul class="properties_list">
-      <li *ngFor="let item of rooms; let i = index">
+      <li *ngFor="let item of rooms | filter: keyword">
         <a [routerLink]="['/room/', item.id, 'post']">
           <img
-            src="http://localhost:8000/storage/images/{{ images[i]['data'][0].url }}"
+            src="http://localhost:8000/storage/images/{{ item.thumb }}"
             alt=""
             title=""
             class="property_img"

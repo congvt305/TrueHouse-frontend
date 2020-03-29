@@ -24,8 +24,8 @@ export class RoomService {
     return this.httpClient.get(this.url + id);
   }
 
-  create(user: IRoom) {
-    return this.httpClient.post(this.url, user);
+  create(room: IRoom) {
+    return this.httpClient.post(this.url, room);
   }
 
   // update(user: IRoom, id) {

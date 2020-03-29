@@ -23,6 +23,8 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderComponent } from './order/order.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -54,7 +56,7 @@ export function provideConfig() {
     ChangePasswordComponent,
     OrderComponent],
   imports: [
-    FileUploadModule,
+  FileUploadModule,
     CommonModule,
     RouterModule,
     AppRoutingModule,
@@ -64,7 +66,8 @@ export function provideConfig() {
     HttpClientModule,
     SocialLoginModule,
     Ng2SearchPipeModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    NgxDaterangepickerMd.forRoot()
   ],
   providers: [
     {

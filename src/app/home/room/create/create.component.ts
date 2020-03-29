@@ -44,7 +44,7 @@ export class CreateComponent implements OnInit {
     private router: Router,
     private roomService: RoomService,
     private imageService: ImageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formCreateRoom = this.fb.group({
@@ -84,7 +84,7 @@ export class CreateComponent implements OnInit {
         });
       }
       this.uploader.clearQueue();
-      this.router.navigate(["/"]);
+      this.router.navigate(["home"]);
     });
   }
 }

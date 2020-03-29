@@ -13,10 +13,11 @@ export class OrderComponent implements OnInit {
 
   selected: { start: Date, end: Date };
   formCreateOrder;
-  @Input() house_id: string;
+  @Input() houseId: number;
+  @Input() price: number;
   checkin: number ;
   model: IOrder;
-
+  numberRoom: number = 2;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -27,23 +28,27 @@ export class OrderComponent implements OnInit {
     this.formCreateOrder = this.fb.group({
       customer_name: ["", [Validators.required]],
       customer_phone: ["", [Validators.required]],
-      house_id: [this.house_id],
+      house_id: [this.houseId],
       user_id: [sessionStorage.getItem("token")],
-      date: ["", [Validators.required]]
+      date: ["", [Validators.required]],
+      checkin: [],
+      checkout: [],
+      totalPrice: [],
     });
   }
 
   onSubmit(data) {
     this.model = data;
-    this.model['checkin'] = data.date.start.format();
-    this.model['checkout'] = data.date.end.format();
-    this.model['totalPrice'] = '100000';
-
+    const dateStart = data.date.start;
+    const dateEnd = data.date.end;
+    this.model.checkin = dateStart.format();    
+    this.model.checkout = dateEnd.format();
+    // const totalDateStart = (dateStart.format('Y') * 365) + (dateStart.format('M') * 30) + dateStart.format('D');
+    // const totalDateEnd = (dateEnd.format('Y') * 365) + (dateEnd.format('M') * 30) + dateEnd.format('D');
+    this.model.totalPrice = 10000; 
     this.orderService.create(this.model).subscribe((result: any) => {
-      this.router.navigate(["/"]);
+      alert('Đặt phòng thành công!');      
+      location.reload();
     });
-
-    this.checkin = data.date.start.format();
-    console.log(this.checkin);    
   }
 }

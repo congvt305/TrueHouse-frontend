@@ -75,12 +75,13 @@ export class LoginComponent implements OnInit {
         alert('Ban chua nhap email hoac password');
       } else {
         if (next.message === 'success') {
-          // @ts-ignore
-          this.userId = next.data.id;
+          this.userId = next.data['id'];
           sessionStorage.setItem('isLogin', 'true');
           sessionStorage.setItem('token', this.userId);
           this.userService.updateUser(next);
+
           this.router.navigate(['']);
+          // this.router.navigate(['room/create']);
           location.reload();
         } else {
           alert('Sai thông tin đăng nhập');

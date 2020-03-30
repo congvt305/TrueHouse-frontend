@@ -14,6 +14,7 @@ import { ImageService } from 'src/app/service/image.service';
 export class CreateComponent implements OnInit {
   model: IRoom;
   formCreateRoom;
+  currentAvatar;
   description: string = "";
   uploadForm: FormGroup;
 
@@ -44,7 +45,7 @@ export class CreateComponent implements OnInit {
     private router: Router,
     private roomService: RoomService,
     private imageService: ImageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formCreateRoom = this.fb.group({
@@ -76,6 +77,7 @@ export class CreateComponent implements OnInit {
       }
       for (let j = 0; j < this.uploader.queue.length; j++) {
         let fileItem = this.uploader.queue[j]._file;
+        
         const data = new FormData();
         data.append("file", fileItem, fileItem.name);
         data.append("fileSeq", "seq" + j);
@@ -84,7 +86,8 @@ export class CreateComponent implements OnInit {
         });
       }
       this.uploader.clearQueue();
-      this.router.navigate(["/"]);
+      this.router.navigate(["home"]);
     });
   }
+
 }

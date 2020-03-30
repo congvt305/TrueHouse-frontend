@@ -16,6 +16,7 @@ export class RoomService {
 
   private url = 'http://localhost:8000/api/houses/';
   rooms: any;
+  private url2 = 'http://127.0.0.1:8000/api/comments/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,6 +33,15 @@ export class RoomService {
     return this.httpClient.post(this.url, room);
   }
 
+
+  getAvgStar(id): Observable<any> {
+    return this.httpClient.get(this.url2 + 'rating/' + id);
+  }
+
+  // update(user: IRoom, id) {
+  //   return this.httpClient.put(this.url + '/houses/' + id, user);
+  // }
+
   search(address, bed_room_num, bath_room_num, price):Observable<HttpResult[]> {
     return this.httpClient.get<HttpResult[]>(this.url + `search?address=${address}
     &bed_room_num=${bed_room_num}
@@ -42,6 +52,7 @@ export class RoomService {
   update(user: IRoom, id) {
     return this.httpClient.patch(this.url + id + '/update', user);
   }
+
 
   // delete(id: number) {
   //   return this.httpClient.delete(this.url + '/houses/' + id);

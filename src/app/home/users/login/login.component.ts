@@ -79,6 +79,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('isLogin', 'true');
           sessionStorage.setItem('token', this.userId);
           this.userService.updateUser(next);
+
+          this.router.navigate(['']);
           // this.router.navigate(['room/create']);
           location.reload();
         } else {

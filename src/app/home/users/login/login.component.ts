@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('token', this.userId);
           this.userService.updateUser(next);
           this.router.navigate(['']);
+          location.reload();
         } else {
           alert('Sai thông tin đăng nhập');
         }

@@ -40,7 +40,7 @@ export class CommentComponent implements OnInit {
         });
         this.idHouse = this.route.snapshot.paramMap.get('id');
         this.formComment = this.fb.group({
-            content: [''],
+            content: [''], rating: ['']
         });
     }
 
@@ -48,8 +48,10 @@ export class CommentComponent implements OnInit {
         const comment = {
             content: data.content,
             user_id: this.idUser,
-            house_id: this.idHouse
+            house_id: this.idHouse,
+            rating: data.rating
         };
+        console.log(comment);
         if (!this.idUser) {
             alert('Ban phai dang nhap moi co the binh luan');
         } else {

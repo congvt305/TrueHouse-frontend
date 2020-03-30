@@ -15,6 +15,8 @@ export class RoomComponent implements OnInit {
   room: IRoom;
   image: IImage;
   user;
+  avgRating;
+  id;
   
   constructor(
     private roomService: RoomService,
@@ -24,10 +26,13 @@ export class RoomComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get("id");
+    const id = this.route.snapshot.paramMap.get('id');
     this.getRoomId(id);
     this.user = this.userService.user;
-    console.log(this.room);    
+    console.log(this.room);
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    this.roomService.getAvgStar(this.id).subscribe(next => {this.avgRating = next.data; console.log(this.avgRating); });
   }
 
   getRoomId(id) {    
@@ -44,4 +49,6 @@ export class RoomComponent implements OnInit {
       
     });
   }
+
+
 }

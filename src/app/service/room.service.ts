@@ -11,6 +11,7 @@ export class RoomService {
 
   private url = 'http://localhost:8000/api/houses/';
   rooms: any;
+  private url2 = 'http://127.0.0.1:8000/api/comments/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -25,6 +26,10 @@ export class RoomService {
 
   create(user: IRoom) {
     return this.httpClient.post(this.url, user);
+  }
+
+  getAvgStar(id): Observable<any> {
+    return this.httpClient.get(this.url2 + 'rating/' + id);
   }
 
   // update(user: IRoom, id) {

@@ -1,6 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!------ Include the above in your HEAD tag ---------->
 <!--To Work with icons-->
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -20,10 +21,15 @@
                         <p *ngFor="let  user of users">
                             <a class="float-left" *ngIf="user.id == idUser" href="{{user.avatar}}">
                                 <strong>{{user.name}}</strong></a> </p>
-                          <div style="text-align:center"> <star-rating value="5" totalstars="5" checkedcolor="red" uncheckedcolor="black" size="35px"
-                                              readonly="false" (rate)="onRate($event)"></star-rating></div>
-
-                        <div class="clearfix"></div>
+                    <p id="rating star" style="  margin-left: 20rem ;font-size: 20px;" >Toi danh gia ngoi nha nay duoc
+                        <select formControlName="rating">
+                            <option  value="1">1</option>
+                            <option  value="2">2</option>
+                            <option  value="3">3</option>
+                            <option  value="4">4</option>
+                            <option  value="5">5</option>
+                        </select><span class="fa fa-star checked"></span></p> </div>
+                        <div class="clearfix">
                         <p><textarea formControlName="content" cols="110" rows="5"></textarea></p>
                         <p>
                             <button type="submit" class="float-right btn btn-outline-primary ml-2"><i
@@ -41,8 +47,9 @@
                             <div *ngIf="user.id === comment.user_id">
                             <div class="col-md-2">
                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                                <p class="text-secondary text-center">15 Minutes Ago</p>
+                                <p class="text-secondary text-center">{{comment.created_at}}</p>
                             </div>
+                                <p > {{comment.rating}}</p> <span class="fa fa-star checked"></span>
                             <div class="col-md-10">
                                 <p><a >
                                 <strong >{{user.name}}</strong></a></p>

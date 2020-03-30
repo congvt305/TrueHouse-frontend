@@ -51,7 +51,7 @@ export class CommentComponent implements OnInit {
             house_id: this.idHouse
         };
         if (!this.idUser) {
-            alert('Ban phai dang nhap moi co the binh luan');
+            alert('Bạn cần đăng nhập để bình luận');
         } else {
             this.commentService.createComment(comment).subscribe();
             location.reload();

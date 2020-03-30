@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <h1>Danh sách lịch đặt thuê nhà của khách</h1>
+    
+      <table mdbTable mdbTableScroll scrollY="true" maxHeight="500" bordered="true" class="mb-5">
+        <thead>
+          <tr>
+            <th *ngFor="let head of roomHead; let i = index" scope="col">{{head}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of historyRoom; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td><a [routerLink]="['/room/' + item.house_id + '/post']">{{ item.name_house }}</a></td>
+            <td>{{ item.customer_name }}</td>
+            <td>{{ item.customer_phone }}</td>
+            <td>{{item.checkin}}</td>
+            <td>{{item.checkout}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h1>Lịch sử các lần thuê nhà của bạn</h1>
+      
+      <table mdbTable mdbTableScroll scrollY="true" maxHeight="400" bordered="true" class="mb-5">
+        <thead>
+          <tr>
+            <th *ngFor="let head of userHead; let i = index" scope="col">{{head}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of historyUser; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td><a [routerLink]="['/room/' + item.house_id + '/post']">{{ item.name_house }}</a></td>
+            <td>{{item.checkin}}</td>
+            <td>{{item.checkout}}</td>
+            <td>{{item.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br/>
+      <br/>
+</div>
+<app-footer></app-footer>

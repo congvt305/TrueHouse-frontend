@@ -14,6 +14,7 @@ import { ImageService } from 'src/app/service/image.service';
 export class CreateComponent implements OnInit {
   model: IRoom;
   formCreateRoom;
+  currentAvatar;
   description: string = "";
   uploadForm: FormGroup;
 
@@ -76,6 +77,7 @@ export class CreateComponent implements OnInit {
       }
       for (let j = 0; j < this.uploader.queue.length; j++) {
         let fileItem = this.uploader.queue[j]._file;
+        
         const data = new FormData();
         data.append("file", fileItem, fileItem.name);
         data.append("fileSeq", "seq" + j);
@@ -87,4 +89,5 @@ export class CreateComponent implements OnInit {
       this.router.navigate(["home"]);
     });
   }
+
 }

@@ -27,6 +27,7 @@ import { RatingModule } from 'ng-starrating';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderComponent } from './order/order.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { HistoryComponent } from './history/history.component';
 
 const config = new AuthServiceConfig([
   {
@@ -58,7 +59,8 @@ export function provideConfig() {
     UserEditComponent,
     ChangePasswordComponent,
     CommentComponent,
-    OrderComponent],
+    OrderComponent,
+    HistoryComponent],
   imports: [
   FileUploadModule,
     CommonModule,

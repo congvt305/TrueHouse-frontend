@@ -8,6 +8,7 @@ import {LoginComponent} from './home/users/login/login.component';
 import {RegisterComponent} from './home/users/register/register.component';
 import { UserEditComponent } from './home/users/user-edit/user-edit.component';
 import {ChangePasswordComponent} from './home/change-password/change-password.component';
+import { HistoryComponent } from './home/history/history.component';
 
 function EditUserComponent() {
 
@@ -37,7 +38,8 @@ const routes: Routes = [
             {path: 'register', component: RegisterComponent},
             {path: 'login', component: LoginComponent}
         ]
-    }
+    },
+    { path: 'history', component: HistoryComponent },
 ];
 
 @NgModule({

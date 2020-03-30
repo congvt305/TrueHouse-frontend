@@ -39,13 +39,20 @@ export class RoomService {
     &price=${price}`);
   }
 
-
-  // update(user: IRoom, id) {
-  //   return this.httpClient.put(this.url + '/houses/' + id, user);
-  // }
+  update(user: IRoom, id) {
+    return this.httpClient.patch(this.url + id + '/update', user);
+  }
 
   // delete(id: number) {
   //   return this.httpClient.delete(this.url + '/houses/' + id);
   // }
+
+  getHistoryByRoom(id: number) {
+    return this.httpClient.get(this.url + id + '/list-order');
+  }
+
+  getHistoryByUser(id: number) {
+    return this.httpClient.get(this.url + id + '/list-order-by-user');
+  }
 
 }

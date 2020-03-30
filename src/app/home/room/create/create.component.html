@@ -129,7 +129,7 @@
         <tbody>
           <tr *ngFor="let item of uploader.queue; let i = index">
             <th scope="row">{{ i+1 }}</th>
-            <td>{{ item.file.name }}</td>
+            <td>{{  item.file.name  }}</td>
             <td><div mdbBtn color="danger" (click)="item.remove()">delete</div></td>
           </tr>
         </tbody>

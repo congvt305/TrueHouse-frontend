@@ -303,7 +303,8 @@
               </svg>
               <strong> {{ room.price | currency: "VND":"symbol" }}</strong> /đêm
             </h5>
-            <p>
+            <span>
+              <p>
               <svg
                 version="1.1"
                 id="IconsRepoEditor"
@@ -334,13 +335,27 @@
                   points="122.753,115.683 149.499,96.263 176.247,115.723 166.032,84.33 192.778,65 159.718,65 149.499,33.557 139.282,65 106.222,65 132.968,84.336 "
                 ></polygon>
               </svg>
-              Trạng thái: {{ room.status }}
-            </p>
+              Trạng thái: <span style="color: blue;">{{ room.status }}</span></p>
+              <form *ngIf="room.user_id == login" (ngSubmit)="onSubmit(updateStatus.value)" [formGroup]="updateStatus">
+                <div class="form-row">
+                <div class="form-group col">
+                    <select class="form-control" formControlName="status">
+                      <option selected>Có thể thuê</option>
+                      <option>Đang bảo trì</option>
+                      <option>Hết phòng</option>
+                    </select>
+                </div>
+                  <div class="form-group col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+              </form>
+            </span>
             <p class="vote">
               <strong>91%</strong> of người thuê hài lòng với sản phẩm này
               <strong>(87 bình chọn)</strong>
             </p>
-            <app-order [houseId]="room.id" [price]="room.price"></app-order>
+            <app-order [userId]="room.user_id" [houseId]="room.id" [price]="room.price"></app-order>
           </div>
           <h3>Chi tiết</h3>
           <div class="container product-description mt-3" [innerHtml]="room.description"></div>

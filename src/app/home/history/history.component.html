@@ -35,7 +35,7 @@
             <td><a [routerLink]="['/room/' + item.house_id + '/post']">{{ item.name_house }}</a></td>
             <td>{{item.checkin}}</td>
             <td>{{item.checkout}}</td>
-            <td>{{item.price}}</td>
+            <td>{{item.price | currency:'VND':'symbol' }} /Ngày</td>
           </tr>
         </tbody>
       </table>

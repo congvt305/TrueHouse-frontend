@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';
 import {
@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
 
   ERROR_MESSAGE = {
     email: [
-      {type: 'email', message: 'Email invalid.'},
-      {type: 'minlength', message: 'Username has min length : 6'}
+      { type: 'email', message: 'Email invalid.' },
+      { type: 'minlength', message: 'Username has min length : 6' }
     ],
     password: [
-      {type: 'required', message: 'Password is required.'},
-      {type: 'minlength', message: 'Password has min length: 6'}
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'Password has min length: 6' }
     ]
   };
   constructor(
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({

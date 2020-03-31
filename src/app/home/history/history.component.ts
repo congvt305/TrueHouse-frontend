@@ -31,7 +31,7 @@ export class HistoryComponent implements OnInit {
 
     });
   }
-  
+
   getHistoryByUser(id) {
     this.roomService.getHistoryByUser(id).subscribe(data => {
       this.historyUser = data["data"];

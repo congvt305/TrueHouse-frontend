@@ -77,12 +77,11 @@ export class CreateComponent implements OnInit {
       }
       for (let j = 0; j < this.uploader.queue.length; j++) {
         let fileItem = this.uploader.queue[j]._file;
-        
+
         const data = new FormData();
         data.append("file", fileItem, fileItem.name);
         data.append("fileSeq", "seq" + j);
         this.imageService.uploadFile(data, house_id).subscribe(result => {
-          console.log(result);
         });
       }
       this.uploader.clearQueue();

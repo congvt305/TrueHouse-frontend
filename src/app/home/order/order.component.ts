@@ -57,14 +57,14 @@ export class OrderComponent implements OnInit {
     if (!this.userLogin) {
       alert('Bạn cần đăng nhập để đặt phòng');
     } else {
-    this.model = data;
-    const dateStart = data.date.start;
-    const dateEnd = data.date.end;
-    this.model.checkin = dateStart.format();
-    this.model.checkout = dateEnd.format();
-    // const totalDateStart = (dateStart.format('Y') * 365) + (dateStart.format('M') * 30) + dateStart.format('D');
-    // const totalDateEnd = (dateEnd.format('Y') * 365) + (dateEnd.format('M') * 30) + dateEnd.format('D');
-    this.model.totalPrice = 10000;
+      this.model = data;
+      const dateStart = data.date.start;
+      const dateEnd = data.date.end;
+      this.model.checkin = dateStart.format();
+      this.model.checkout = dateEnd.format();
+      // const totalDateStart = (dateStart.format('Y') * 365) + (dateStart.format('M') * 30) + dateStart.format('D');
+      // const totalDateEnd = (dateEnd.format('Y') * 365) + (dateEnd.format('M') * 30) + dateEnd.format('D');
+      this.model.totalPrice = 10000;
       this.orderService.create(this.model).subscribe((result: any) => {
         alert('Đặt phòng thành công!');
         location.reload();

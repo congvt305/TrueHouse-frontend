@@ -1,63 +1,57 @@
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!------ Include the above in your HEAD tag ---------->
 <!--To Work with icons-->
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <div class="container">
-    <h2 class="text-center">Comment and Rating</h2>
-
+    <!-- <h2 class="text-center">Comment and Rating</h2> -->
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <form [formGroup]="formComment" (ngSubmit)="onSubmit(formComment.value)">
-                    <div class="col-md-2">
-                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                    <div class="col-md-4">
+                        <img src="https://vozer.vn/images/smileys/73.png" width="100" height="100" class="img img-rounded img-fluid" />
+                        <span *ngFor="let  user of users">
+                            <a *ngIf="user.id == idUser" href="{{user.avatar}}">
+                                <strong>{{user.name}}</strong></a> </span>
                     </div>
-                    <div class="col-md-10">
-                        <p *ngFor="let  user of users">
-                            <a class="float-left" *ngIf="user.id == idUser" href="{{user.avatar}}">
-                                <strong>{{user.name}}</strong></a> </p>
-                    <p id="rating star" style="  margin-left: 20rem ;font-size: 20px;" >Toi danh gia ngoi nha nay duoc
-                        <select formControlName="rating">
-                            <option  value="1">1</option>
-                            <option  value="2">2</option>
-                            <option  value="3">3</option>
-                            <option  value="4">4</option>
-                            <option  value="5">5</option>
-                        </select><span class="fa fa-star checked"></span></p> </div>
-                        <div class="clearfix">
-                        <p><textarea formControlName="content" cols="110" rows="5"></textarea></p>
+                    <div class="col-md-8">
+                        <p id="rating star" style="  margin-left: 20rem ;font-size: 20px;">Tôi đánh giá ngôi nhà này được
+                            <select formControlName="rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><span class="fa fa-star checked"></span></p>
+                    </div>
+                    <div class="clearfix">
+                        <textarea formControlName="content" cols="110" rows="5"></textarea>
                         <p>
                             <button type="submit" class="float-right btn btn-outline-primary ml-2"><i
-                                    class="fa fa-reply"></i> submit
-                            </button>
-                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> replay</a>
+                                    class="fa fa-reply"></i> submit</button>
+                            <a class="float-right btn text-white btn-danger mt-2"> <i class="fa fa-heart"></i>Replay</a>
                         </p>
                     </div>
                 </form>
             </div>
+
             <div class="card card-inner" *ngFor="let comment of commentAll">
                 <div class="card-body" *ngIf="comment.house_id == idHouse">
                     <div class="row">
                         <div *ngFor="let user of users">
                             <div *ngIf="user.id === comment.user_id">
-                            <div class="col-md-2">
-                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                                <p class="text-secondary text-center">{{comment.created_at}}</p>
-                            </div>
-                                <p > {{comment.rating}}</p> <span class="fa fa-star checked"></span>
-                            <div class="col-md-10">
-                                <p><a >
-                                <strong >{{user.name}}</strong></a></p>
-                            </div>
+                                <div class="col-6">
+                                    <img src="https://vozer.vn/images/smileys/2.png" width="60" height="60" />
+                                    {{comment.rating}} <span class="fa fa-star checked"></span><a><strong> {{user.name}}:</strong></a>
+                                        {{comment.created_at | date: "yyyy-MM-dd"}}
+                                </div>
+                                <div class="col-6">
+                                </div>
                             </div>
                         </div>
-                            <p> {{comment.content}}</p>
+                        <p> {{comment.content}}</p>
                     </div>
                 </div>
             </div>

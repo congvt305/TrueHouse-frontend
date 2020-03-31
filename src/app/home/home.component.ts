@@ -50,13 +50,8 @@ export class HomeComponent implements OnInit {
     this.price = value;
   }
 
-  getAll() {
-    console.log(this.address);
-    console.log(this.bed_room_num);
-    console.log(this.bath_room_num);
-    console.log(this.price);
-        
-    this.roomService.search(this.address, this.bed_room_num, this.bath_room_num, this.price).subscribe(data => {
+  getAll() {   
+    this.roomService.getAll().subscribe(data => {
       for (const [i, room] of data['data'].entries()) {
         this.rooms.push(room);
         this.imageService.getImageById(room.id).subscribe(data => {

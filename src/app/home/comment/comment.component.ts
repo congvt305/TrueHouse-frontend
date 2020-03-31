@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {RoomService} from '../../service/room.service';
-import {CommentServiceService} from '../../service/comment-service.service';
-import {IComment} from '../../interface/i-comment';
-import {UserService} from '../../service/user.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoomService } from '../../service/room.service';
+import { CommentServiceService } from '../../service/comment-service.service';
+import { IComment } from '../../interface/i-comment';
+import { UserService } from '../../service/user.service';
 import { StarRatingComponent } from 'ng-starrating';
 
 @Component({
@@ -51,17 +51,16 @@ export class CommentComponent implements OnInit {
             house_id: this.idHouse,
             rating: data.rating
         };
-        console.log(comment);
         if (!this.idUser) {
             alert('Bạn cần đăng nhập để bình luận');
         } else {
-            this.commentService.createComment(comment).subscribe();
-            location.reload();
+            this.commentService.createComment(comment).subscribe(next => {
+                location.reload();
+            });
         }
     }
 
-
-    onRate($event: {oldValue: number, newValue: number, starRating: StarRatingComponent}) {
+    onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
         alert(`Old Value:${$event.oldValue},
       New Value: ${$event.newValue},
       Checked Color: ${$event.starRating.checkedcolor},

@@ -14,32 +14,30 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RoomComponent implements OnInit {
   room: IRoom;
-  image: IImage;
+  image: IImage[] = [];
   user;
+  nameHouse;
 
   avgRating;
   id;
   updateStatus;
   login = sessionStorage.getItem('token');
 
-  
+
   constructor(
     private roomService: RoomService,
     private route: ActivatedRoute,
     private userService: UserService,
     private imageService: ImageService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.getRoomId(id);
     this.user = this.userService.user;
-
-    console.log(this.room);
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
-    this.roomService.getAvgStar(this.id).subscribe(next => {this.avgRating = next.data; console.log(this.avgRating); });
+    this.roomService.getAvgStar(this.id).subscribe(next => { this.avgRating = next.data; console.log(this.avgRating); });
 
 
     this.updateStatus = this.fb.group({
@@ -49,16 +47,17 @@ export class RoomComponent implements OnInit {
 
   }
 
-  getRoomId(id) {    
+  getRoomId(id) {
     this.roomService.getById(id).subscribe(data => {
       this.room = data["data"];
+      this.nameHouse = this.room.name_house;
       this.getImageById(this.room);
     });
   }
 
   getImageById(house) {
     this.imageService.getImageById(house.id).subscribe(data => {
-      this.image = data['data'];      
+      this.image = data['data'];
     });
   }
 
@@ -66,7 +65,7 @@ export class RoomComponent implements OnInit {
     this.roomService.update(data, data['id']).subscribe((result: any) => {
       location.reload();
     });
-    
+
   }
 
 

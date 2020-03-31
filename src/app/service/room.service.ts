@@ -42,11 +42,11 @@ export class RoomService {
   //   return this.httpClient.put(this.url + '/houses/' + id, user);
   // }
 
-  search(address, bed_room_num, bath_room_num, price):Observable<HttpResult[]> {
+  search(address, bed_room_num, bath_room_num, price, start, end):Observable<HttpResult[]> {
     return this.httpClient.get<HttpResult[]>(this.url + `search?address=${address}
     &bed_room_num=${bed_room_num}
     &bath_room_num=${bath_room_num}
-    &price=${price}`);
+    &price=${price}&start=${start}&end=${end}`);
   }
 
   update(user: IRoom, id) {

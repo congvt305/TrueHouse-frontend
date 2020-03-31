@@ -1,57 +1,89 @@
-
 <!------ Include the above in your HEAD tag ---------->
 <!--To Work with icons-->
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
 
 <div class="container">
     <!-- <h2 class="text-center">Comment and Rating</h2> -->
     <div class="card">
         <div class="card-body">
-            <div class="row">
-                <form [formGroup]="formComment" (ngSubmit)="onSubmit(formComment.value)">
+            <form [formGroup]="formComment" (ngSubmit)="onSubmit(formComment.value)">
+                <div class="row">
                     <div class="col-md-4">
-                        <img src="https://vozer.vn/images/smileys/73.png" width="100" height="100" class="img img-rounded img-fluid" />
-                        <span *ngFor="let  user of users">
-                            <a *ngIf="user.id == idUser" href="{{user.avatar}}">
-                                <strong>{{user.name}}</strong></a> </span>
+                        <img src="https://vozer.vn/images/smileys/73.png" width="100" height="100"
+                            class="img img-rounded img-fluid" />
+                        <span *ngFor="let user of users">
+                            <a *ngIf="user.id == idUser" href="{{ user.avatar }}">
+                                <strong>{{ user.name }}</strong></a>
+                        </span>
                     </div>
                     <div class="col-md-8">
-                        <p id="rating star" style="  margin-left: 20rem ;font-size: 20px;">Tôi đánh giá ngôi nhà này được
+                        <p id="rating star" style="  margin-left: 20rem ;font-size: 20px;">
+                            Tôi đánh giá ngôi nhà này được
                             <select formControlName="rating">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select><span class="fa fa-star checked"></span></p>
-                    </div>
-                    <div class="clearfix">
-                        <textarea formControlName="content" cols="110" rows="5"></textarea>
-                        <p>
-                            <button type="submit" class="float-right btn btn-outline-primary ml-2"><i
-                                    class="fa fa-reply"></i> submit</button>
-                            <a class="float-right btn text-white btn-danger mt-2"> <i class="fa fa-heart"></i>Replay</a>
+                            </select><span class="fa fa-star checked"></span>
                         </p>
                     </div>
-                </form>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" ormControlName="content" rows="3"></textarea>
+                </div>
+                <div style="text-align: right;">
+                <button type="submit" class=" btn btn-outline-primary"><i class="fa fa-reply"></i> submit</button>
+                <button class="btn text-white btn-danger"> <i class="fa fa-heart"></i>Replay</button>
             </div>
+            </form>
 
-            <div class="card card-inner" *ngFor="let comment of commentAll">
+            <div class="card" *ngFor="let comment of commentAll">
                 <div class="card-body" *ngIf="comment.house_id == idHouse">
                     <div class="row">
-                        <div *ngFor="let user of users">
-                            <div *ngIf="user.id === comment.user_id">
-                                <div class="col-6">
+                        <div class="col">
+                            <div *ngFor="let user of users">
+                                <div *ngIf="user.id === comment.user_id">
                                     <img src="https://vozer.vn/images/smileys/2.png" width="60" height="60" />
-                                    {{comment.rating}} <span class="fa fa-star checked"></span><a><strong> {{user.name}}:</strong></a>
-                                        {{comment.created_at | date: "yyyy-MM-dd"}}
-                                </div>
-                                <div class="col-6">
+                                    <span *ngIf="comment.rating == null">
+                                        Không đánh giá
+                                    </span>
+                                    <span *ngIf="comment.rating == 1">
+                                        <i class="fa fa-star checked"></i>
+                                    </span>
+                                    <span *ngIf="comment.rating == 2">
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                    </span>
+                                    <span *ngIf="comment.rating == 3">
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                    </span>
+                                    <span *ngIf="comment.rating == 4">
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                    </span>
+                                    <span *ngIf="comment.rating == 5">
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                        <i class="fa fa-star checked"></i>
+                                    </span>
+                                    <p style="font-weight: 500;">
+                                        <strong> {{ user.name }}: </strong>
+                                        <i>{{ comment.created_at | date: "yyyy-MM-dd" }}</i>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <p> {{comment.content}}</p>
+                        <div class="col-9">
+                            {{ comment.content }}
+                        </div>
                     </div>
                 </div>
             </div>
